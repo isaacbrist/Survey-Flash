@@ -10,18 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-import AboutPage from '../ViewResponses/ViewResponses';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../YourSurveys/YourSurveys';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
 import './App.css';
 import YourSurveys from '../YourSurveys/YourSurveys';
+import YourSurveysEdit from '../YourSurveysEdit/YourSurveysEdit';
 import ViewResponses from '../ViewResponses/ViewResponses';
 
 function App() {
@@ -63,12 +59,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows YourSurveys else shows LoginPage
             exact
             path="/your-surveys"
           >
             <YourSurveys />
           </ProtectedRoute>
+          <ProtectedRoute
+           
+           exact
+           path="/your-surveys-edit"
+         >
+           <YourSurveysEdit />
+           </ProtectedRoute>
 
           <Route
             exact
