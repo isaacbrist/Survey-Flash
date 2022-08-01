@@ -13,14 +13,16 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
+import AboutPage from '../ViewResponses/ViewResponses';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import InfoPage from '../YourSurveys/YourSurveys';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import YourSurveys from '../YourSurveys/YourSurveys';
+import ViewResponses from '../ViewResponses/ViewResponses';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,14 +41,14 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
+         
+          <ProtectedRoute
+           
             exact
-            path="/about"
+            path="/view-responses"
           >
-            <AboutPage />
-          </Route>
+            <ViewResponses />
+            </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -63,9 +65,9 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/your-surveys"
           >
-            <InfoPage />
+            <YourSurveys />
           </ProtectedRoute>
 
           <Route

@@ -5,14 +5,14 @@ import React from 'react';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is'
 
-function AboutPage() {
+function ViewResponses() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>This is so that you can view your responses</p>
       </div>
     </div>
   );
 }
 
-export default AboutPage;
+export default ViewResponses;

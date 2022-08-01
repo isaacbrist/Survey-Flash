@@ -3,3 +3,9 @@ footer {
   padding: 20px;
   text-align: center;
 }
+
+
+.imgLogo{
+  max-height: 25px;
+  max-width: 25px;
+}
