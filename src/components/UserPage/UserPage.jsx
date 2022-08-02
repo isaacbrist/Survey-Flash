@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteOutlined from "@mui/icons-material/DeleteOutlined";
 import Typography from '@mui/material/Typography';
 import Paper from '@material-ui/core/Paper';
-
+import Grid from '@material-ui/core/Grid';
 
 
 function UserPage() {
@@ -43,34 +43,20 @@ function UserPage() {
                     </Card>
             </Paper>
       </div>
-      <div>      
-            <Paper
-            className="bColor"
-             direction="row"
-             justifycontent="center"
-             alignitems="center"
-             //handleClick(surveyTemplate.id)
-             onClick={() => handleClick()}>
-                   
-                    <Card >
-                    <div className="bColor">
-                    <CardActionArea>
-                    <Typography 
-                    
-                    gutterBottom variant="h4" 
-                    component="h4">Title of template</Typography>
-                    <CardContent>
-                    <Typography 
-                    
-                    gutterBottom variant="h5" 
-                    component="h5">Description of Template</Typography>
-                    </CardContent>
-                    </CardActionArea>
-                    </div>
-                    </Card>
-            </Paper>
-        
-      </div>
+      <section className="question-template">
+        {/* questionTs is the question from the question template table */}
+                <Grid container spacing={5}>
+                {questionTs.map(questionT => (
+                        <Grid item key={questionT.id} xs={2}>
+                           <SurveyTemplate questionT={questionT}
+                            />
+                        </Grid>
+                    )
+                )}
+                </Grid>
+
+            </section>
+     
       <h3>Welcome, {user.username}!</h3>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
