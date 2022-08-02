@@ -16,6 +16,7 @@ import DeleteOutlined from "@mui/icons-material/DeleteOutlined";
 import Typography from '@mui/material/Typography';
 import Paper from '@material-ui/core/Paper';
 
+//from userpage
 
 function SurveyTemplate(questionT){
   const history = useHistory()
@@ -75,14 +76,14 @@ return(
   validate
   autoComplete="off"
 >
-{questionT.map(question => (
+{/* {questionT.map(question => (
                         <Typography item key={question.id}
                         gutterBottom variant="h6" 
                         component="h6">
                         {question.question}
                         </Typography>
                     )
-                )}
+                )} */}
     
       
   
@@ -111,4 +112,4 @@ return(
 )
 }
 
-export default Feeling
+export default SurveyTemplate
