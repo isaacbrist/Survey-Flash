@@ -10,15 +10,16 @@ import IconButton from '@mui/material/IconButton';
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
 import Typography from '@mui/material/Typography';
 import Paper from '@material-ui/core/Paper';
+import { PropaneSharp } from '@mui/icons-material';
 
-function YourSurveysItem({ survey }) {
+function YourSurveysItem(props) {
   const history = useHistory();
   const dispatch = useDispatch();
   //
-  const handleEditClick = (id) => {
+  const handleEditClick = () => {
     //dispatch survey info to the redux store and then route user to the edit store
-    dispatch({ type: 'SET_EDIT_SURVEY', payload: id });
-
+    dispatch({ type: 'SET_EDIT_SURVEY', payload: props.survey });
+console.log('Here is the props.survey', props.survey)
     history.push('/your-surveys-edit');
   };
   return (
@@ -28,15 +29,15 @@ function YourSurveysItem({ survey }) {
         direction="row"
         justifycontent="center"
         alignitems="center"
-        onClick={() => handleEditClick(survey.id)}
+        onClick={() => handleEditClick()}
       >
         <Card>
           <div className="bColor">
             <CardActionArea>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h3">
-                  {survey.survey_name} {survey.administered}{' '}
-                  {survey.date_administered}
+                  {props.survey.survey_name} {props.survey.administered}{' '}
+                  {props.survey.date_administered}
                 </Typography>
               </CardContent>
             </CardActionArea>

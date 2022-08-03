@@ -9,8 +9,8 @@ function YourSurveysEdit() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const editQuestion = useSelector((store) => store.editQuestion);
-
+  const editSurvey = useSelector((store) => store.editSurvey);
+//function to handle edit of a question
   function handleChange(event, property) {
     dispatch({ 
                 type: 'EDIT_ONCHANGE', 
@@ -18,19 +18,21 @@ function YourSurveysEdit() {
             });
 
   }
-
+//handlechange will take in id of question
+//payload: id: id
+//question
   // Called when the submit button is pressed
   function handleSubmit(event) {
     event.preventDefault();
 
-    // PUT REQUEST to /youe-surveys/:id
-    axios.put(`/your-surveys/${editQuestion.id}`, editQuestion)
+    // PUT REQUEST to /your-surveys/:id
+    axios.put(`/api/surveys/${editSurvey.id}`, editSurvey)
         .then( response => {
             // clean up reducer data            
-            dispatch({ type: 'EDIT_CLEAR' });
+            // dispatch({ type: 'EDIT_CLEAR' });
 
             // refresh will happen with useEffect on Home
-            history.push('/'); // back to list
+            // history.push('/'); // back to list
         })
         .catch(error => {
             console.log('error on PUT: ', error);
@@ -44,17 +46,18 @@ function YourSurveysEdit() {
     <div className="container">
       <p>Your Surveys-Edit</p>
     </div>
-        <h2>Edit Student</h2>
-      <p>We are editing this student: {editQuestion.question} 
-      with id: {editQuestion.id}
-      </p>
+        <h2>Edit Questions and name</h2>
+        <h3>Title of Survey: {editSurvey.survey_name}</h3>
+      {/* <p>We are editing this question: {editSurvey.question} 
+      with id: {editSurvey.id}
+      </p> */}
       <form onSubmit={handleSubmit}>
         <input
-          onChange={(event) => handleChange(event, 'question')}
-          placeholder='Question'
-          value={editQuestion.question}
+          onChange={(event) => handleChange(event, 'survey_name')}
+          placeholder='Survey Name'
+          value={editSurvey.survey_name}
         />
-        <input type='submit' value='Update Question' />
+        <input type='submit' value='Update Survey' />
       </form>
       </div>
   );

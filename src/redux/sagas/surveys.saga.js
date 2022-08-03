@@ -15,6 +15,7 @@ function* fetchSurveys() {
 
 function* surveysSaga() {
   yield takeEvery('FETCH_SURVEYS', fetchSurveys);
+
 }
 
 export default surveysSaga;
