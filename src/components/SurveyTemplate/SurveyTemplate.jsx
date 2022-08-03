@@ -18,18 +18,18 @@ import Paper from '@material-ui/core/Paper';
 
 //from userpage
 
-function SurveyTemplate(questionT){
+function SurveyTemplate(survey){
   const history = useHistory()
     const dispatch=useDispatch()
    
  //dispatch
     const addSurvey = (event) => {
-        console.log();
-        event.preventDefault();
-        dispatch({
-          type: 'ADD_NEW_SURVEY',
-          payload: {feeling: feelings}
-        });
+        // console.log();
+        // event.preventDefault();
+        // dispatch({
+        //   type: 'ADD_NEW_SURVEY',
+        //   payload: {survey: survey}
+        // });
         handleClick()
       }
     
@@ -37,7 +37,7 @@ function SurveyTemplate(questionT){
   const handleClick=()=>{
     console.log('You clicked this template!', )
     //Once clicked on, will need to add that template to survey_table and bring the admin to the edit page for that survey
-    history.push('/your-surveys-edit')
+    history.push('/your-surveys')
 }
 
     

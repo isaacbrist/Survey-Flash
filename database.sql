@@ -13,10 +13,10 @@ CREATE TABLE "user" (
 
 CREATE TABLE "survey_table" (
 	"id" serial NOT NULL,
-	"user_id" serial NOT NULL,
-	"survey_name" varchar(255) NOT NULL,
-	"administered" BOOLEAN NOT NULL,
-	"date_administered" DATE NOT NULL,
+	"user_id" serial,
+	"survey_name" varchar(255),
+	"administered" BOOLEAN,
+	"date_administered" DATE,
 	CONSTRAINT "survey_table_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
