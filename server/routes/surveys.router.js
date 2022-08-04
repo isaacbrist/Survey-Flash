@@ -33,7 +33,7 @@ router.put('/:id', (req, res) => {
   // Update this single title
   console.log('Here is the req.params and req.body', req.params, req.body)
   const id = req.params.id;
-  const questions = req.body.questions;
+  // const questions = req.body.questions;
   
   const queryText = `UPDATE survey_table SET survey_name = $1 WHERE id = $2`;
   pool
