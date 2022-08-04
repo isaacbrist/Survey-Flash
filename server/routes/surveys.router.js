@@ -31,10 +31,13 @@ router.post('/', (req, res) => {
 });
 router.put('/:id', (req, res) => {
   // Update this single title
-  const idToUpdate = req.params.id;
+  console.log('Here is the req.params and req.body', req.params, req.body)
+  const id = req.params.id;
+  const questions = req.body.questions;
+  
   const queryText = `UPDATE survey_table SET survey_name = $1 WHERE id = $2`;
   pool
-    .query(queryText, [req.body.survey_name, idToUpdate])
+    .query(queryText, [req.body.survey_name, id])
     .then((result) => {
       res.sendStatus(200);
     })

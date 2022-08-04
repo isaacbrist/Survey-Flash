@@ -24,11 +24,17 @@ function YourSurveysEdit() {
       payload: { property: property, value: event.target.value },
     });
   }
+
+  function handleQuestionsChange(event, property) {
+    dispatch({
+      type: 'EDIT_QUESTIONS_ONCHANGE',
+      payload: { property: property, value: event.target.value },
+    });
+  }
   //function to tell a saga to do a put request
   function handleUpdateAll(event) {
     dispatch({
-      type: 'UPDATE_ALL'
-      
+      type: 'UPDATE_ALL',
     });
     //go back to your surveys
     history.push('/your-surveys');
@@ -39,10 +45,11 @@ function YourSurveysEdit() {
   // Called when the submit button is pressed
   function handleSubmit(event) {
     event.preventDefault();
-
+    console.log('You clicked the submit button')
+const data={ editSurvey, questions}
     // PUT REQUEST to /your-surveys/:id
     axios
-      .put(`/api/surveys/${editSurvey.id}`, editSurvey)
+      .put(`/api/surveys/${editSurvey.id}`, data)
       .then((response) => {
         // clean up reducer data
         // dispatch({ type: 'EDIT_CLEAR' });
@@ -74,19 +81,19 @@ function YourSurveysEdit() {
       </form>
       {/* map through all the questions linked to this survey */}
       <div>
-        {questions.map((question) => (
-          <Grid item key={question.id} xs={2}>
-            <h3>Content of Question: {question.question}</h3>
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          {questions.map((question) => (
+            <Grid item key={question.id} xs={2}>
+              <h3>Content of Question: {question.question}</h3>
               <input
-                onChange={(event) => handleChange(event, question.id)}
+                onChange={(event) => handleQuestionsChange(event, question.id)}
                 placeholder="Question"
                 value={question.question}
               />
               <input type="submit" value="Update Question" />
-            </form>
-          </Grid>
-        ))}
+            </Grid>
+          ))}
+        </form>
       </div>
       <Button onClick={(event) => handleUpdateAll(event)}>
         Save all edits
