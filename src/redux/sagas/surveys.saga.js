@@ -23,6 +23,9 @@ function* fetchQuestions(action) {
     console.log('Get all questions error in surveys saga', error);
   }
 }
+
+
+
 function* updateQuestions(action) {
  
   try {
@@ -34,11 +37,23 @@ function* updateQuestions(action) {
   }
 }
 
-
+function* deleteSurvey(action) {
+  try {
+    console.log('Action.payload is:', action.payload);
+    const response = yield axios.delete(`/api/surveys/${action.payload}`);
+    console.log('Delete this survey, here is the response.data:', response.data);
+    //do I need a response from delete?
+    yield put({ type: 'FETCH_SURVEYS' });
+  } catch (error) {
+    console.log('Delete this survey error: error in surveys saga', error);
+  }
+}
 function* surveysSaga() {
   yield takeEvery('FETCH_SURVEYS', fetchSurveys);
   yield takeEvery('FETCH_QUESTIONS', fetchQuestions);
+  yield takeEvery('DELETE_SURVEY', deleteSurvey)
   yield takeEvery('UPDATE_ALL', updateQuestions)
+
 
 }
 
