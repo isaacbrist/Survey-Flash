@@ -5,6 +5,7 @@ const router = express.Router();
 /**
  * GET route
  */
+
 router.get('/', (req, res) => {
   const query = `SELECT * FROM "survey_table" ORDER BY "id" ASC`;
   pool
@@ -21,6 +22,7 @@ router.get('/', (req, res) => {
       res.sendStatus(500);
     });
 });
+
 router.get('/', (req, res) => {
   // GET route code here
 });

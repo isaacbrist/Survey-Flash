@@ -18,8 +18,11 @@ function YourSurveysItem(props) {
   //
   const handleEditClick = () => {
     //dispatch survey info to the redux store and then route user to the edit store
+    //goes to the edit survey reducer
     dispatch({ type: 'SET_EDIT_SURVEY', payload: props.survey });
 console.log('Here is the props.survey', props.survey)
+//goes to the 
+dispatch({ type: 'FETCH_QUESTIONS', payload: props.survey.id });
     history.push('/your-surveys-edit');
   };
   return (

@@ -12,9 +12,19 @@ function* fetchSurveys() {
   }
 }
 
-
+function* fetchQuestions(action) {
+  try {
+    console.log('Action.payload is:', action.payload)
+    const response = yield axios.get(`/api/questions/${action.payload}`);
+    console.log('Get all questions:', response.data);
+    yield put({ type: 'SET_QUESTIONS', payload: response.data });
+  } catch (error) {
+    console.log('Get all questions error in surveys saga', error);
+  }
+}
 function* surveysSaga() {
   yield takeEvery('FETCH_SURVEYS', fetchSurveys);
+  yield takeEvery('FETCH_QUESTIONS', fetchQuestions);
 
 }
 
