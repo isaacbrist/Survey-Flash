@@ -11,10 +11,6 @@ router.get('/', (req, res) => {
   pool
     .query(query)
     .then((result) => {
-      console.log(
-        'Here are the result.rows for all the surveys',
-        result.rows
-      );
       res.send(result.rows);
     })
     .catch((err) => {
@@ -39,6 +35,22 @@ router.put('/:id', (req, res) => {
   const queryText = `UPDATE survey_table SET survey_name = $1 WHERE id = $2`;
   pool
     .query(queryText, [req.body.survey_name, idToUpdate])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${queryText}`, error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  // Delete this survey
+  console.log('Here is the req.params.id', req.params.id)
+  const idToDelete = req.params.id;
+  const queryText = `DELETE FROM survey_table WHERE id = $1`;
+  pool 
+    .query(queryText, [idToDelete])
     .then((result) => {
       res.sendStatus(200);
     })

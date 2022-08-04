@@ -49,7 +49,7 @@ CREATE TABLE "respondent_table" (
 
 CREATE TABLE "survey_question_table" (
 	"id" serial NOT NULL,
-	"survey_id" serial NOT NULL,
+	"survey_id" serial NOT NULL, 
 	"question" varchar(1000) NOT NULL,
 	CONSTRAINT "survey_question_table_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -68,17 +68,29 @@ CREATE TABLE "question_template_table" (
 
 
 
-
 ALTER TABLE "survey_table" ADD CONSTRAINT "survey_table_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id");
 
 ALTER TABLE "responses_table" ADD CONSTRAINT "responses_table_fk0" FOREIGN KEY ("respondent_id") REFERENCES "respondent_table"("id");
 
 ALTER TABLE "respondent_table" ADD CONSTRAINT "respondent_table_fk0" FOREIGN KEY ("survey_id") REFERENCES "survey_table"("id");
 
-ALTER TABLE "survey_question_table" ADD CONSTRAINT "survey_question_table_fk0" FOREIGN KEY ("survey_id") REFERENCES "survey_table"("id");
+ALTER TABLE "survey_question_table" ADD CONSTRAINT "survey_question_table_fk0" FOREIGN KEY ("survey_id") REFERENCES "survey_table"("id") ON DELETE CASCADE;
+
+INSERT INTO "survey_table" ("user_id", "survey_name")
+VALUES (1, 'Test survey'),
+(1, 'Testing survey')
+
 
 INSERT INTO "question_template_table" ("question")
 VALUES ('How would you rate the presention today?'),
 ('What was one take-away from today?'),
 ('What could have been done differently?'),
 ('What is one area to improve?')
+
+INSERT INTO "survey_question_table" ("survey_id", "question")
+VALUES (3, 'What is one area to improve?'),
+ (4, 'How would you rate the presention today?'),
+(4, 'What was one take-away from today?'),
+(4, 'What could have been done differently?');
+
+
