@@ -79,7 +79,7 @@ function YourSurveysEdit() {
             <h3>Content of Question: {question.question}</h3>
             <form onSubmit={handleSubmit}>
               <input
-                onChange={(event) => handleChange(event, 'question')}
+                onChange={(event) => handleChange(event, question.id)}
                 placeholder="Question"
                 value={question.question}
               />
