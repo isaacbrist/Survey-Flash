@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 import { put, takeEvery } from 'redux-saga/effects';
-
+// const allQuestions = useSelector((store) => store.questions);
 // worker Saga: will be fired on "FETCH_SURVEYS" actions
 function* fetchSurveys() {
   try {
@@ -22,9 +23,22 @@ function* fetchQuestions(action) {
     console.log('Get all questions error in surveys saga', error);
   }
 }
+function* updateQuestions(action) {
+ 
+  try {
+//trying to finish the put request for all the questions
+    console.log('Updating all the questions. Here is all the questions', allQuestions);
+    const response = yield axios.put(`/api/questions`, allQuestions);
+  } catch (error) {
+    console.log('Get all questions error in surveys saga', error);
+  }
+}
+
+
 function* surveysSaga() {
   yield takeEvery('FETCH_SURVEYS', fetchSurveys);
   yield takeEvery('FETCH_QUESTIONS', fetchQuestions);
+  yield takeEvery('UPDATE_ALL', updateQuestions)
 
 }
 
