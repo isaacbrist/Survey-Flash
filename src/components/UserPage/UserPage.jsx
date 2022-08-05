@@ -82,7 +82,7 @@ function UserPage() {
         >
           <Card>
             <div className="bColor">
-              <Typography gutterBottom variant="h3" component="h3">
+              <Typography gutterBottom variant="h5" component="h5">
                 Click on the Your Surveys Button at the top right to get started!
               </Typography>
             </div>
