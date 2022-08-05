@@ -25,6 +25,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+
 router.post('/', (req, res) => {
     console.log('Here is the req.body in questions router', req.body)
   const newQuestion = req.body;
@@ -39,6 +40,24 @@ router.post('/', (req, res) => {
     })
     .catch((err) => {
       console.log(`ERR in /questions router`, err);
+     res.sendStatus(500);
+    });
+});
+
+router.put('/:id', (req, res) => {
+  // Update this single question
+  console.log('Here is the req.params and req.body', req.params, req.body);
+  const id = req.params.id;
+
+  const queryText = `UPDATE survey_question_table SET question = $1 WHERE id = $2`;
+  pool
+    .query(queryText, [req.body.question, id])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${queryText}`, error);
+
       res.sendStatus(500);
     });
 });

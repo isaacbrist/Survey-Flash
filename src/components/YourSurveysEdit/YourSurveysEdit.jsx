@@ -17,7 +17,7 @@ function YourSurveysEdit() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const editSurvey = useSelector((store) => store.editSurvey);
+  const editSurveyName = useSelector((store) => store.editSurvey);
   const questions = useSelector((store) => store.questions);
   const [question, setQuestion] = useState('');
   const survey_id = editSurvey.id;
@@ -28,24 +28,58 @@ function YourSurveysEdit() {
       payload: { property: property, value: event.target.value },
     });
   }
-  //function to tell a saga to do a put request
-  function handleUpdateAll(event) {
+
+  function handleQuestionsChange(event, property) {
     dispatch({
-      type: 'UPDATE_ALL',
+
+      type: 'EDIT_QUESTIONS_ONCHANGE',
+      payload: { property: property, value: event.target.value },
+
     });
-    //go back to your surveys
-    history.push('/your-surveys');
   }
+
  
+
+
+  //function to tell a saga to do a put request
+  // function handleUpdateAll(event) {
+  //   dispatch({
+  //     type: 'UPDATE_ALL',
+  //   });
+  //   //go back to your surveys
+  //   history.push('/your-surveys');
+  // }
+
+
 
   // Called when the submit button is pressed
   //updates the name of the survey and question (Question is not updating in the db properly yet)
-  function handleSubmit(event) {
+   function handleSubmitName(event) {
     event.preventDefault();
-
-    // PUT REQUEST to /your-surveys/:id
+    console.log('You clicked the submit button');
+    //for sending both the questions and the title. add data in after the editSurvey
+    // const data={ editSurvey, questions}
+    // PUT REQUEST to /surveys/:id
     axios
-      .put(`/api/surveys/${editSurvey.id}`, editSurvey)
+      .put(`/api/surveys/${editSurveyName.id}`, editSurveyName)
+      .then((response) => {
+        // clean up reducer data
+        // dispatch({ type: 'EDIT_CLEAR' });
+        // refresh will happen with useEffect on Home
+        // history.push('/'); // back to list
+      })
+      .catch((error) => {
+        console.log('error on PUT: ', error);
+      });
+  }
+
+  function handleSubmitQuestion(event, question) {
+    event.preventDefault();
+    console.log('You clicked the submit question button');
+    console.log('Here is the question', question);
+    // PUT REQUEST to /questions/:id
+    axios
+      .put(`/api/questions/${question.id}`, question)
       .then((response) => {
         // clean up reducer data
         // dispatch({ type: 'EDIT_CLEAR' });
@@ -91,30 +125,32 @@ function YourSurveysEdit() {
         </Button>
       </form>
       <h2>Edit Questions and name</h2>
-      <h3>Title of Survey: {editSurvey.survey_name}</h3>
+      <h3>Title of Survey: {editSurveyName.survey_name}</h3>
       {/* <p>We are editing this question: {editSurvey.question} 
       with id: {editSurvey.id}
       </p> */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmitName}>
         <input
           onChange={(event) => handleChange(event, 'survey_name')}
           placeholder="Survey Name"
-          value={editSurvey.survey_name}
+          value={editSurveyName.survey_name}
         />
         <input type="submit" value="Update Survey" />
       </form>
       {/* map through all the questions linked to this survey */}
       <div>
-        {questions.map((question) => (
-          <Grid item key={question.id} xs={2}>
-            <h3>Content of Question: {question.question}</h3>
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitQuestion}>
+          {questions.map((question) => (
+            <Grid item key={question.id} xs={2}>
+              <h3>Content of Question: {question.question}</h3>
+
               <input
-                onChange={(event) => handleChange(event, question.id)}
+                onChange={(event) => handleQuestionsChange(event, question.id)}
                 placeholder="Question"
                 value={question.question}
               />
               <input type="submit" value="Update Question" />
+
             </form>
             <Stack direction="row" spacing={2}>
               <Button
@@ -130,6 +166,7 @@ function YourSurveysEdit() {
       </div>
       {/* <Button onClick={(event) => handleUpdateAll(event)}>
         Save all edits
+
       </Button> */}
     </div>
   );
