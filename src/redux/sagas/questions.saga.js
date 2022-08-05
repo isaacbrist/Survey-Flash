@@ -50,12 +50,22 @@ function* deleteQuestion(action) {
     console.log('Delete this question error: error in question saga', error);
   }
 }
-
+function* fetchRespondentQuestions(action) {
+  try {
+    console.log('Here is the fetchRespondentQuestions, Action.payload is:', action.payload);
+    const response = yield axios.get(`/api/questions/${action.payload}`);
+    console.log('Get all questions for the respondent:', response.data);
+    yield put({ type: 'SET_RESPONDENT_QUESTIONS', payload: response.data });
+  } catch (error) {
+    console.log('Get all questions error in surveys saga', error);
+  }
+}
 function* questionsSaga() {
   yield takeEvery('FETCH_QUESTIONS', fetchQuestions);
   yield takeEvery('UPDATE_ALL', updateQuestions);
   yield takeEvery('ADD_QUESTION', postQuestions);
   yield takeEvery('DELETE_QUESTION', deleteQuestion);
+   yield takeEvery('SEND_SURVEY_ID', fetchRespondentQuestions)
 }
 
 export default questionsSaga;

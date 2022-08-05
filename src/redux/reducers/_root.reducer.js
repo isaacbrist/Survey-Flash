@@ -5,6 +5,7 @@ import questionTemplate from './questionTemplate.reducer';
 import surveys from './surveys.reducer';
 import questions from './questions.reducer'
 import editSurvey from './editSurvey.reducer'
+import respondentQuestions from './respondentQuestions.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   questionTemplate, //contains id and questions
   surveys, //contains id, user_id, survey_name, administered, date administered
   editSurvey, //contains the current survey that is being edited
-  questions
+  questions,
+  respondentQuestions,
 });
 
 export default rootReducer;

@@ -40,7 +40,7 @@ function* surveysSaga() {
   yield takeEvery('FETCH_SURVEYS', fetchSurveys);
   yield takeEvery('DELETE_SURVEY', deleteSurvey)
   yield takeEvery('ADD_SURVEY', postSurvey)
-
+ 
 
 }
 
