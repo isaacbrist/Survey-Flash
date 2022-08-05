@@ -25,6 +25,25 @@ router.get('/:id', (req, res) => {
     });
 });
 
+
+router.post('/', (req, res) => {
+    console.log('Here is the req.body in questions router', req.body)
+  const newQuestion = req.body;
+  const queryText = `INSERT INTO "survey_question_table" ("survey_id", "question")
+    values ($1, $2);`;
+
+  pool
+    .query(queryText, [newQuestion.survey_id, newQuestion.question])
+    .then((result) => {
+      res.send(result.rows);
+      console.log(`POST successful in questions.router:`, result.rows);
+    })
+    .catch((err) => {
+      console.log(`ERR in /questions router`, err);
+     res.sendStatus(500);
+    });
+});
+
 router.put('/:id', (req, res) => {
   // Update this single question
   console.log('Here is the req.params and req.body', req.params, req.body);
@@ -38,6 +57,7 @@ router.put('/:id', (req, res) => {
     })
     .catch((error) => {
       console.log(`Error making database query ${queryText}`, error);
+
       res.sendStatus(500);
     });
 });
