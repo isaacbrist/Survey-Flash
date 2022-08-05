@@ -50,6 +50,27 @@ function UserPage() {
     history.push('/your-surveys');
   };
 
+//----------------code for stretch goal-----
+  //  <section className="question-template">
+  //    {/* questionTs is the question from the question template table */}
+  //    <Grid container spacing={5}>
+  //      {questionTs.map((questionT) => (
+  //        <Grid item key={questionT.id} xs={2}>
+  //          {/* Maps through the SurveyTemplate component to list all questions for that template */}
+
+  //          {questionT.question}
+  //        </Grid>
+  //      ))}
+  //      <Button
+  //        variant="contained"
+  //        type="submit"
+  //        onClick={() => addSurvey(event)}
+  //        button="true"
+  //      >
+  //        Add to Surveys
+  //      </Button>
+  //    </Grid>
+  //  </section>;
   return (
     <div className="container">
       <div>
@@ -62,32 +83,13 @@ function UserPage() {
           <Card>
             <div className="bColor">
               <Typography gutterBottom variant="h3" component="h3">
-                Click on a template to get started!
+                Click on the Your Surveys Button at the top right to get started!
               </Typography>
             </div>
           </Card>
         </Paper>
       </div>
-      <section className="question-template">
-        {/* questionTs is the question from the question template table */}
-        <Grid container spacing={5}>
-          {questionTs.map((questionT) => (
-            <Grid item key={questionT.id} xs={2}>
-              {/* Maps through the SurveyTemplate component to list all questions for that template */}
-
-              {questionT.question}
-            </Grid>
-          ))}
-          <Button
-            variant="contained"
-            type="submit"
-            onClick={() => addSurvey(event)}
-            button="true"
-          >
-            Add to Surveys
-          </Button>
-        </Grid>
-      </section>
+     
 
       <h3>Welcome, {user.username}!</h3>
       <p>Your ID is: {user.id}</p>

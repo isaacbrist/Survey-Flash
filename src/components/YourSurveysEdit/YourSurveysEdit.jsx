@@ -20,7 +20,7 @@ function YourSurveysEdit() {
   const editSurveyName = useSelector((store) => store.editSurvey);
   const questions = useSelector((store) => store.questions);
   const [question, setQuestion] = useState('');
-  const survey_id = editSurvey.id;
+  const survey_id = editSurveyName.id;
   //function to handle edit of a question
   function handleChange(event, property) {
     dispatch({
@@ -31,15 +31,10 @@ function YourSurveysEdit() {
 
   function handleQuestionsChange(event, property) {
     dispatch({
-
       type: 'EDIT_QUESTIONS_ONCHANGE',
       payload: { property: property, value: event.target.value },
-
     });
   }
-
- 
-
 
   //function to tell a saga to do a put request
   // function handleUpdateAll(event) {
@@ -50,11 +45,9 @@ function YourSurveysEdit() {
   //   history.push('/your-surveys');
   // }
 
-
-
   // Called when the submit button is pressed
   //updates the name of the survey and question (Question is not updating in the db properly yet)
-   function handleSubmitName(event) {
+  function handleSubmitName(event) {
     event.preventDefault();
     console.log('You clicked the submit button');
     //for sending both the questions and the title. add data in after the editSurvey
@@ -90,7 +83,7 @@ function YourSurveysEdit() {
         console.log('error on PUT: ', error);
       });
   }
-//Adds a new question
+  //Adds a new question
   const handleAddClick = () => {
     console.log('You clicked the add button!');
     console.log('survey_id is:', survey_id);
@@ -99,12 +92,10 @@ function YourSurveysEdit() {
     setQuestion('');
   };
   //deletes a question
-  const handleDeleteClick = () => {
-    console.log(
-      'You clicked the delete button! Here is that id',
-      props.survey.id
-    );
-    dispatch({ type: 'DELETE_SURVEY', payload: props.survey.id });
+  const handleDeleteClick = (event, id) => {
+    console.log('You clicked the delete button! Here is that id', id);
+    dispatch({ type: 'DELETE_QUESTION', payload: id });
+    dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
   };
 
   return (
@@ -126,9 +117,7 @@ function YourSurveysEdit() {
       </form>
       <h2>Edit Questions and name</h2>
       <h3>Title of Survey: {editSurveyName.survey_name}</h3>
-      {/* <p>We are editing this question: {editSurvey.question} 
-      with id: {editSurvey.id}
-      </p> */}
+
       <form onSubmit={handleSubmitName}>
         <input
           onChange={(event) => handleChange(event, 'survey_name')}
@@ -151,18 +140,18 @@ function YourSurveysEdit() {
               />
               <input type="submit" value="Update Question" />
 
-            </form>
-            <Stack direction="row" spacing={2}>
-              <Button
-                onClick={() => handleDeleteClick()}
-                variant="contained"
-                startIcon={<DeleteIcon />}
-              >
-                Delete
-              </Button>
-            </Stack>
-          </Grid>
-        ))}
+              <Stack direction="row" spacing={2}>
+                <Button
+                  onClick={() => handleDeleteClick(event, question.id)}
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete
+                </Button>
+              </Stack>
+            </Grid>
+          ))}
+        </form>
       </div>
       {/* <Button onClick={(event) => handleUpdateAll(event)}>
         Save all edits

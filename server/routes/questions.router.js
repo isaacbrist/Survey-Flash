@@ -62,4 +62,20 @@ router.put('/:id', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  // Delete this question
+  console.log('Here is the req.params.id', req.params.id);
+  const idToDelete = req.params.id;
+  const queryText = `DELETE FROM survey_question_table WHERE id = $1`;
+  pool
+    .query(queryText, [idToDelete])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${queryText}`, error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
