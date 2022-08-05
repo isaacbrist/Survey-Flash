@@ -13,29 +13,7 @@ function* fetchSurveys() {
   }
 }
 
-function* fetchQuestions(action) {
-  try {
-    console.log('Action.payload is:', action.payload)
-    const response = yield axios.get(`/api/questions/${action.payload}`);
-    console.log('Get all questions:', response.data);
-    yield put({ type: 'SET_QUESTIONS', payload: response.data });
-  } catch (error) {
-    console.log('Get all questions error in surveys saga', error);
-  }
-}
 
-
-
-function* updateQuestions(action) {
- 
-  try {
-//trying to finish the put request for all the questions
-    console.log('Updating all the questions. Here is all the questions', allQuestions);
-    const response = yield axios.put(`/api/questions`, allQuestions);
-  } catch (error) {
-    console.log('Get all questions error in surveys saga', error);
-  }
-}
 
 function* deleteSurvey(action) {
   try {
@@ -48,11 +26,20 @@ function* deleteSurvey(action) {
     console.log('Delete this survey error: error in surveys saga', error);
   }
 }
+
+function* postSurvey(action) {
+  try {
+    const response = yield axios.post('/api/surveys', action.payload);
+    yield put({ type: 'FETCH_SURVEYS', payload: response.data});
+  } catch (error) {
+    console.log('Post this survey error: error in surveys saga', error);
+  }
+}
+
 function* surveysSaga() {
   yield takeEvery('FETCH_SURVEYS', fetchSurveys);
-  yield takeEvery('FETCH_QUESTIONS', fetchQuestions);
   yield takeEvery('DELETE_SURVEY', deleteSurvey)
-  yield takeEvery('UPDATE_ALL', updateQuestions)
+  yield takeEvery('ADD_SURVEY', postSurvey)
 
 
 }

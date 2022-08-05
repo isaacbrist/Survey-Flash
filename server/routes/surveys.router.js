@@ -24,11 +24,26 @@ router.get('/', (req, res) => {
 });
 
 /**
- * POST route template
+ * POST route 
  */
 router.post('/', (req, res) => {
-  // POST route code here
+
+  const newSurvey = req.body;
+  const queryText = `INSERT INTO "survey_table" ("user_id", "survey_name")
+    values ($1, $2);`;
+
+  pool
+    .query(queryText, [newSurvey.user_id, newSurvey.survey_name])
+    .then((result) => {
+      res.send(result.rows);
+      console.log(`POST successful in surveys.router:`, result.rows);
+    })
+    .catch((err) => {
+      console.log(`ERR in /surveys router`, err);
+      res.sendStatus(500);
+    });
 });
+
 router.put('/:id', (req, res) => {
   // Update this single title
   const idToUpdate = req.params.id;

@@ -9,6 +9,6 @@ const questionsReducer = (state = [], action) => {
   }
 };
 
-// surveysReducer will be on the redux state at:
-// state.surveys
+// questionsReducer will be on the redux state at:
+// state.questions
 export default questionsReducer;

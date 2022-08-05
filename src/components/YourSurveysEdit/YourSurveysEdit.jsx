@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Stack from '@mui/material/Stack';
 
 //Here is where we can edit an individual survey
 
 function YourSurveysEdit() {
-  //  useEffect(() => {
-  //    console.log('Getting all surveys');
-  //    dispatch({ type: 'FETCH_QUESTIONS' });
-  //  }, []);
+  // useEffect(() => {
+  //   console.log('Getting all questions');
+  //   dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
+  // }, []);
 
   const dispatch = useDispatch();
   const history = useHistory();
   const editSurvey = useSelector((store) => store.editSurvey);
   const questions = useSelector((store) => store.questions);
+  const [question, setQuestion] = useState('');
+  const survey_id = editSurvey.id;
   //function to handle edit of a question
   function handleChange(event, property) {
     dispatch({
@@ -27,16 +31,15 @@ function YourSurveysEdit() {
   //function to tell a saga to do a put request
   function handleUpdateAll(event) {
     dispatch({
-      type: 'UPDATE_ALL'
-      
+      type: 'UPDATE_ALL',
     });
     //go back to your surveys
     history.push('/your-surveys');
   }
-  //handlechange will take in id of question
-  //payload: id: id
-  //question
+ 
+
   // Called when the submit button is pressed
+  //updates the name of the survey and question (Question is not updating in the db properly yet)
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -53,12 +56,40 @@ function YourSurveysEdit() {
         console.log('error on PUT: ', error);
       });
   }
+//Adds a new question
+  const handleAddClick = () => {
+    console.log('You clicked the add button!');
+    console.log('survey_id is:', survey_id);
+    dispatch({ type: 'ADD_QUESTION', payload: { survey_id, question } });
+    dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
+    setQuestion('');
+  };
+  //deletes a question
+  const handleDeleteClick = () => {
+    console.log(
+      'You clicked the delete button! Here is that id',
+      props.survey.id
+    );
+    dispatch({ type: 'DELETE_SURVEY', payload: props.survey.id });
+  };
 
   return (
     <div>
       <div className="container">
         <p>Your Surveys-Edit</p>
       </div>
+      <div>Add a new question!</div>
+      <form onSubmit={handleAddClick}>
+        <input
+          type="text"
+          placeholder="Type your question"
+          value={question}
+          onChange={(event) => setQuestion(event.target.value)}
+        />
+        <Button type="submit" variant="contained">
+          Add
+        </Button>
+      </form>
       <h2>Edit Questions and name</h2>
       <h3>Title of Survey: {editSurvey.survey_name}</h3>
       {/* <p>We are editing this question: {editSurvey.question} 
@@ -85,12 +116,21 @@ function YourSurveysEdit() {
               />
               <input type="submit" value="Update Question" />
             </form>
+            <Stack direction="row" spacing={2}>
+              <Button
+                onClick={() => handleDeleteClick()}
+                variant="contained"
+                startIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
+            </Stack>
           </Grid>
         ))}
       </div>
-      <Button onClick={(event) => handleUpdateAll(event)}>
+      {/* <Button onClick={(event) => handleUpdateAll(event)}>
         Save all edits
-      </Button>
+      </Button> */}
     </div>
   );
 }
