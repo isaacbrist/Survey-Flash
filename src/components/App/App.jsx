@@ -21,6 +21,8 @@ import YourSurveysEdit from '../YourSurveysEdit/YourSurveysEdit';
 import ViewResponses from '../ViewResponses/ViewResponses';
 import StartSurvey from '../StartSurvey/StartSurvey';
 import RespondentSurvey from '../RespondentSurvey/RespondentSurvey';
+import RespondentCompletion from '../RespondentCompletion/RespondentCompletion';
+import ViewResponsesDetail from '../ViewResponsesDetail/ViewResponsesDetail';
 function App() {
   const dispatch = useDispatch();
 
@@ -41,6 +43,10 @@ function App() {
           <Route exact path="/respondent-survey">
             <RespondentSurvey />
           </Route>
+
+          <Route exact path="/respondent-completion">
+            <RespondentCompletion />
+          </Route>
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -52,8 +58,13 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+          {/* View all responses to activated surveys */}
           <ProtectedRoute exact path="/view-responses">
             <ViewResponses />
+          </ProtectedRoute>
+          {/* Detailed view */}
+          <ProtectedRoute exact path="/view-responses-detail">
+            <ViewResponsesDetail />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -63,6 +74,7 @@ function App() {
           >
             <YourSurveys />
           </ProtectedRoute>
+          {/* Edit page */}
           <ProtectedRoute exact path="/your-surveys-edit">
             <YourSurveysEdit />
           </ProtectedRoute>
