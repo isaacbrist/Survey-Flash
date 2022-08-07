@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 //Here is where we can edit an individual survey
 
@@ -97,12 +98,27 @@ function YourSurveysEdit() {
     dispatch({ type: 'DELETE_QUESTION', payload: id });
     dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
   };
-
+//back button
+     const handleBackClick = () => {
+       console.log('You clicked the back button!');
+       history.push('/your-surveys');
+     };
   return (
     <div>
+      {/* Back button */}
+      <Stack direction="row" spacing={2}>
+        <Button
+          onClick={() => handleBackClick()}
+          variant="contained"
+          startIcon={<ArrowBackIcon />}
+        >
+          Back
+        </Button>
+      </Stack>
       <div className="container">
         <p>Your Surveys-Edit</p>
       </div>
+      {/* New question button/form */}
       <div>Add a new question!</div>
       <form onSubmit={handleAddClick}>
         <input
@@ -115,6 +131,7 @@ function YourSurveysEdit() {
           Add
         </Button>
       </form>
+      {/* Edit the name of the survey */}
       <h2>Edit Questions and name</h2>
       <h3>Title of Survey: {editSurveyName.survey_name}</h3>
 
@@ -126,7 +143,7 @@ function YourSurveysEdit() {
         />
         <input type="submit" value="Update Survey" />
       </form>
-      {/* map through all the questions linked to this survey */}
+      {/* map through all the questions linked to this survey so that you can edit */}
       <div>
         <form onSubmit={handleSubmitQuestion}>
           {questions.map((question) => (
