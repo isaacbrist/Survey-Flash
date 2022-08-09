@@ -13,6 +13,8 @@ import SendIcon from '@mui/icons-material/Send';
 
 function RespondentSurvey() {
 
+
+
    const [name, setName] = useState('');
    const [response, setResponse]=useState('')
   const dispatch = useDispatch();
@@ -20,8 +22,12 @@ function RespondentSurvey() {
 //grab the questions from the questions stored in the respondent questions store
   const questions = useSelector((store) => store.respondentQuestions);
   const responseData=useSelector((store)=> store.respondentResponse)
-
-
+   const activeSurveyId = useSelector((store) => store.activeSurveyId);
+//makes sure that the questions render
+//  useEffect(() => {
+//    console.log('Getting all surveys', activeSurveyId);
+//    dispatch({ type: 'SEND_SURVEY_ID', payload: activeSurveyId });
+//  }, []);
 //function to handle the submit of all of the respondent's questions and responses
   function handleAnswers(event, property, survey_id, question) {
  

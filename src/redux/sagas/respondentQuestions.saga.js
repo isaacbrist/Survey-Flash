@@ -32,7 +32,7 @@ function* handleRespondentAnswers(action) {
   }
 }
 
-//handles storing the active survey id
+// handles storing the active survey id
 // function* handleStoreSurveyId(action) {
 //   try {
 //     console.log(
