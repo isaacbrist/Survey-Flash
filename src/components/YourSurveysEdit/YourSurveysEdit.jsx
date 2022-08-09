@@ -37,53 +37,48 @@ function YourSurveysEdit() {
     });
   }
 
-  //function to tell a saga to do a put request
-  // function handleUpdateAll(event) {
-  //   dispatch({
-  //     type: 'UPDATE_ALL',
-  //   });
-  //   //go back to your surveys
-  //   history.push('/your-surveys');
-  // }
+  // function to tell a saga to do a put request
+  function handleUpdateAll(event) {
+    console.log('Here are all the questions that we are updating', questions)
+    dispatch({
+      type: 'UPDATE_ALL', payload: {questions, survey_id}
+    });
+    //go back to your surveys
+    history.push('/your-surveys');
+  }
 
   // Called when the submit button is pressed
   //updates the name of the survey and question (Question is not updating in the db properly yet)
   function handleSubmitName(event) {
     event.preventDefault();
     console.log('You clicked the submit button');
-    //for sending both the questions and the title. add data in after the editSurvey
-    // const data={ editSurvey, questions}
+    //for sending the title. 
+
     // PUT REQUEST to /surveys/:id
     axios
       .put(`/api/surveys/${editSurveyName.id}`, editSurveyName)
       .then((response) => {
-        // clean up reducer data
-        // dispatch({ type: 'EDIT_CLEAR' });
-        // refresh will happen with useEffect on Home
-        // history.push('/'); // back to list
+   
       })
       .catch((error) => {
         console.log('error on PUT: ', error);
       });
   }
 
-  function handleSubmitQuestion(event, question) {
-    event.preventDefault();
-    console.log('You clicked the submit question button');
-    console.log('Here is the question', question);
-    // PUT REQUEST to /questions/:id
-    axios
-      .put(`/api/questions/${question.id}`, question)
-      .then((response) => {
-        // clean up reducer data
-        // dispatch({ type: 'EDIT_CLEAR' });
-        // refresh will happen with useEffect on Home
-        // history.push('/'); // back to list
-      })
-      .catch((error) => {
-        console.log('error on PUT: ', error);
-      });
-  }
+  // function handleSubmitQuestion(event, question) {
+  //   event.preventDefault();
+  //   console.log('You clicked the submit question button');
+  //   console.log('Here is the question', question);
+  //   // PUT REQUEST to /questions/:id
+  //   axios
+  //     .put(`/api/questions/${question.id}`, question)
+  //     .then((response) => {
+    
+  //     })
+  //     .catch((error) => {
+  //       console.log('error on PUT: ', error);
+  //     });
+  // }
   //Adds a new question
   const handleAddClick = () => {
     console.log('You clicked the add button!');
@@ -145,7 +140,7 @@ function YourSurveysEdit() {
       </form>
       {/* map through all the questions linked to this survey so that you can edit */}
       <div>
-        <form onSubmit={handleSubmitQuestion}>
+        {/* <form onSubmit={handleSubmitQuestion}> */}
           {questions.map((question) => (
             <Grid item key={question.id} xs={2}>
               <h3>Content of Question: {question.question}</h3>
@@ -155,7 +150,7 @@ function YourSurveysEdit() {
                 placeholder="Question"
                 value={question.question}
               />
-              <input type="submit" value="Update Question" />
+              {/* <input type="submit" value="Update Question" /> */}
 
               <Stack direction="row" spacing={2}>
                 <Button
@@ -168,12 +163,12 @@ function YourSurveysEdit() {
               </Stack>
             </Grid>
           ))}
-        </form>
+        {/* </form> */}
       </div>
-      {/* <Button onClick={(event) => handleUpdateAll(event)}>
+      <Button onClick={(event) => handleUpdateAll(event)}>
         Save all edits
 
-      </Button> */}
+      </Button>
     </div>
   );
 }

@@ -26,23 +26,10 @@ CREATE TABLE "survey_table" (
 
 CREATE TABLE "responses_table" (
 	"id" serial NOT NULL,
-	"respondent_id" int NOT NULL,
+	"survey_id" int NOT NULL,
+	"name" varchar(255) NOT NULL,
 	"question" varchar(1000) NOT NULL,
 	"response" varchar(1000) NOT NULL,
-	CONSTRAINT "responses_table_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
-CREATE TABLE "respondent_table" (
-	"id" serial NOT NULL,
-	"survey_id" serial NOT NULL,
-	"name" varchar(255) NOT NULL,
-	CONSTRAINT "respondent_table_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
 );
 
 

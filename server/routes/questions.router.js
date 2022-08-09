@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-
+//Post a new question
 router.post('/', (req, res) => {
     console.log('Here is the req.body in questions router', req.body)
   const newQuestion = req.body;
@@ -44,14 +44,17 @@ router.post('/', (req, res) => {
     });
 });
 
+
 router.put('/:id', (req, res) => {
-  // Update this single question
+  // Update these questions
   console.log('Here is the req.params and req.body', req.params, req.body);
-  const id = req.params.id;
+  const newQuestions = req.body;
 
   const queryText = `UPDATE survey_question_table SET question = $1 WHERE id = $2`;
+  for(let i=0; i<newQuestions.length; i++){
+    // pool.query(queryText, [newAnswer[i].survey_id, newAnswer[i].name, newAnswer[i].question, newAnswer[i].response])
   pool
-    .query(queryText, [req.body.question, id])
+    .query(queryText, [req.body[i].question, req.body[i].id])
     .then((result) => {
       res.sendStatus(200);
     })
@@ -60,8 +63,9 @@ router.put('/:id', (req, res) => {
 
       res.sendStatus(500);
     });
-});
-
+  }
+}
+)
 router.delete('/:id', (req, res) => {
   // Delete this question
   console.log('Here is the req.params.id', req.params.id);
