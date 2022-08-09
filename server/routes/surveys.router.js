@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
 /**
  * POST route 
  */
+//Post a new survey
 router.post('/', (req, res) => {
 
   const newSurvey = req.body;

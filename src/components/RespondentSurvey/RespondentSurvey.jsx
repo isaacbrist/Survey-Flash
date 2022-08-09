@@ -14,32 +14,38 @@ import SendIcon from '@mui/icons-material/Send';
 function RespondentSurvey() {
 
    const [name, setName] = useState('');
+   const [response, setResponse]=useState('')
   const dispatch = useDispatch();
   const history = useHistory();
 //grab the questions from the questions stored in the respondent questions store
   const questions = useSelector((store) => store.respondentQuestions);
+  const responseData=useSelector((store)=> store.respondentResponse)
+questions.survey_id
 
-  //function to handle edit of a question
-  // function handleChange(event, property) {
-  //   dispatch({
-  //     type: 'EDIT_ONCHANGE',
-  //     payload: { property: property, value: event.target.value },
-  //   });
-  // }
 //function to handle the submit of all of the respondent's questions and responses
-  function handleAnswers(event) {
+  function handleAnswers(event, property, survey_id, question) {
+ 
     dispatch({
       type: 'HANDLE_ANSWERS',
-      payload: {property: property, question: question.question, response: event.target.value },
-    });
+      payload: {
+        property: property,
+        name: name, 
+        question: question,
+        survey_id: survey_id,
+        response: response,
+      },
+    }); 
+    setResponse('');
   }
 
   function handleSubmit() {
+    console.log('You clicked the submit button', responseData);
     dispatch({
       type: 'HANDLE_SUBMIT',
-      payload: {  value: event.target.value },
+      payload: {responseData
+      },
     });
-    history.push('respondent-completion')
+    history.push('respondent-completion');
   }
 
   return (
@@ -53,7 +59,6 @@ function RespondentSurvey() {
 
       <Box
         component="form"
-        // onSubmit={addSupported}
         sx={{
           '& > :not(style)': { m: 1, width: '25ch', height: '7ch' },
         }}
@@ -82,6 +87,7 @@ function RespondentSurvey() {
                 '& > :not(style)': { m: 1, width: '25ch', height: '7ch' },
               }}
               validate
+              type="submit"
               autoComplete="off"
             >
               {/* Text Field */}
@@ -89,11 +95,29 @@ function RespondentSurvey() {
                 id="filled-basic"
                 required
                 placeholder="Response"
-                onChange={(event) => handleQuestionsSubmit(event)}
-                // value={question.question}
+                onChange={(event) => setResponse(event.target.value)}
+              
                 label="Question"
                 variant="filled"
               />
+              <Button
+                variant="contained"
+                size=""
+                onClick={(event) =>
+                  handleAnswers(
+                    event,
+                    question.id,
+                    question.survey_id,
+                    question.question,
+                    
+                  )
+                }
+                type="submit"
+                button="true"
+                endIcon={<SendIcon />}
+              >
+                Save
+              </Button>
             </Box>
             {/* <input type="submit" value="Update Question" /> */}
           </Grid>
