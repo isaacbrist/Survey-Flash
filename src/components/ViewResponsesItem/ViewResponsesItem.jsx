@@ -24,10 +24,9 @@ function ViewResponsesItem(props) {
       'You clicked the View Survey button! Here is the id of the survey',
       props.survey.id
     );
-   dispatch({ type: 'SET_EDIT_SURVEY', payload: props.survey });
-   console.log('Here is the props.survey', props.survey);
-   //goes to the
-   dispatch({ type: 'FETCH_QUESTIONS', payload: props.survey.id });
+
+   //fetches all the responses for a particular survey
+   dispatch({ type: 'FETCH_RESPONSES', payload: props.survey.id });
 
     history.push('/view-responses-detail');
   };

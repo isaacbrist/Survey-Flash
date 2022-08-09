@@ -2,6 +2,32 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+//gets all the responses relates to one survey
+router.get('/:id', (req, res) => {
+  console.log(
+    'Here is the req.paramsid in the responses.router',
+    req.params.id
+  );
+  const id = req.params.id;
+
+  const queryText = `SELECT * FROM "responses_table" WHERE "survey_id" = $1`;
+  pool
+    .query(queryText, [id])
+    .then((result) => {
+      console.log(
+        'Here are the result.rows for all the responses',
+        result.rows
+      );
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR in response.router: Get all questions', err);
+      res.sendStatus(500);
+    });
+});
+
+
+
 // POST request
 //  An async/await function that inserts responses to surveys
 // If one query fails, they all do and are rolledback

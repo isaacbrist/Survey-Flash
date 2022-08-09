@@ -6,6 +6,7 @@ import questionTemplateSaga from './questionTemplate.saga';
 import surveysSaga from './surveys.saga';
 import questionsSaga from './questions.saga';
 import respondentQuestionsSaga from './respondentQuestions.saga';
+import viewResponseSaga from './viewResponse.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     surveysSaga(),
     questionsSaga(),
     respondentQuestionsSaga(),
+    viewResponseSaga(),
   ]);
 }

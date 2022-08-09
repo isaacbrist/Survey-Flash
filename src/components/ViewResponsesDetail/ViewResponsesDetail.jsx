@@ -14,7 +14,7 @@ function ViewResponsesDetail() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-const questions = useSelector((store) => store.questions);
+const responses = useSelector((store) => store.viewResponse);
    
 
 //back button
@@ -41,10 +41,11 @@ const questions = useSelector((store) => store.questions);
       {/* map through all the questions and responses linked to this survey */}
       <div>
        
-          {questions.map((question) => (
-            <Grid item key={question.id} xs={2}>
-              <h5>Question and Response: {question.question}</h5>
-              <h6>{question.response}</h6>
+          {responses.map((response) => (
+            <Grid item key={response.id} xs={2}>
+              <h5>Name: {response.name}</h5>
+              <h5>Question and Response: {response.question}</h5>
+              <h6>{response.response}</h6>
             </Grid>
           ))}
        
