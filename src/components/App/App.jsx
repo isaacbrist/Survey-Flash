@@ -45,7 +45,7 @@ let surveyId=activeSurveyId
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
-            <Route exact path={`/respondent-survey/${surveyId}`}>
+            <Route exact path='/respondent-survey/:surveyId'>
               <RespondentSurvey />
             </Route>
             <Route exact path="/respondent-completion">

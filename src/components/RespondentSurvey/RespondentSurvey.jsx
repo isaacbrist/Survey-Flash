@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Button from '@mui/material/Button';
@@ -12,35 +12,35 @@ import SendIcon from '@mui/icons-material/Send';
 //Here is where the respondent responds to questions
 
 function RespondentSurvey() {
-
-
-
-   const [name, setName] = useState('');
-   const [response, setResponse]=useState('')
+  const { surveyId } = useParams();
+  const [name, setName] = useState('');
+  const [response, setResponse] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
-//grab the questions from the questions stored in the respondent questions store
+  //grab the questions from the questions stored in the respondent questions store
   const questions = useSelector((store) => store.respondentQuestions);
-  const responseData=useSelector((store)=> store.respondentResponse)
-   const activeSurveyId = useSelector((store) => store.activeSurveyId);
-//makes sure that the questions render
-//  useEffect(() => {
-//    console.log('Getting all surveys', activeSurveyId);
-//    dispatch({ type: 'SEND_SURVEY_ID', payload: activeSurveyId });
-//  }, []);
-//function to handle the submit of all of the respondent's questions and responses
+  const responseData = useSelector((store) => store.respondentResponse);
+  const activeSurveyId = useSelector((store) => store.activeSurveyId);
+  // makes sure that the questions render
+  useEffect(() => {
+    console.log('Getting all surveys', activeSurveyId);
+    dispatch({ type: 'SEND_SURVEY_ID', payload: surveyId });
+  }, []);
+
+
+
+  //function to handle the submit of all of the respondent's questions and responses
   function handleAnswers(event, property, survey_id, question) {
- 
     dispatch({
       type: 'HANDLE_ANSWERS',
       payload: {
         property: property,
-        name: name, 
+        name: name,
         question: question,
         survey_id: survey_id,
         response: response,
       },
-    }); 
+    });
     setResponse('');
   }
 
@@ -48,8 +48,7 @@ function RespondentSurvey() {
     console.log('You clicked the submit button', responseData);
     dispatch({
       type: 'HANDLE_SUBMIT',
-      payload: {responseData
-      },
+      payload: { responseData },
     });
     history.push('/respondent-completion');
   }
@@ -102,7 +101,6 @@ function RespondentSurvey() {
                 required
                 placeholder="Response"
                 onChange={(event) => setResponse(event.target.value)}
-              
                 label="Question"
                 variant="filled"
               />
@@ -114,8 +112,7 @@ function RespondentSurvey() {
                     event,
                     question.id,
                     question.survey_id,
-                    question.question,
-                    
+                    question.question
                   )
                 }
                 type="submit"
