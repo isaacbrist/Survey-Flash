@@ -36,15 +36,7 @@ let surveyId=activeSurveyId
 
   return (
     <>
-      <Router>
-        {/* /${userId}/${surveyId} */}
-        <Route path={`/respondent-survey`}>
-          <RespondentSurvey />
-        </Route>
-        <Route path="/respondent-completion">
-          <RespondentCompletion />
-        </Route>
-      </Router>
+      <Router></Router>
 
       <Router>
         <div>
@@ -53,7 +45,12 @@ let surveyId=activeSurveyId
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
-
+            <Route exact path={`/respondent-survey/${userId}/${surveyId}`}>
+              <RespondentSurvey />
+            </Route>
+            <Route exact path="/respondent-completion">
+              <RespondentCompletion />
+            </Route>
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).

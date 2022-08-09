@@ -18,7 +18,7 @@ function ViewResponses() {
 
   useEffect(() => {
     console.log('Getting all surveys');
-    dispatch({ type: 'FETCH_SURVEYS' });
+    dispatch({ type: 'FETCH_SURVEYS', payload: user_id });
   }, []);
 
   return (
