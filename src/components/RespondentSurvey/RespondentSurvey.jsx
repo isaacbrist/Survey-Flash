@@ -45,7 +45,7 @@ function RespondentSurvey() {
       payload: {responseData
       },
     });
-    history.push('respondent-completion');
+    history.push('/respondent-completion');
   }
 
   return (

@@ -36,18 +36,20 @@ let surveyId=activeSurveyId
 
   return (
     <>
-      <Router></Router>
+      <Router>
+        {/* /${userId}/${surveyId} */}
+        <Route path={`/respondent-survey`}>
+          <RespondentSurvey />
+        </Route>
+        <Route path="/respondent-completion">
+          <RespondentCompletion />
+        </Route>
+      </Router>
 
       <Router>
         <div>
           <Nav />
-          <Route path={`/respondent-survey/${userId}/${surveyId}`}>
-            <RespondentSurvey />
-          </Route>
 
-          <Route exact path="/respondent-completion">
-            <RespondentCompletion />
-          </Route>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -124,6 +126,7 @@ let surveyId=activeSurveyId
               <h1>404</h1>
             </Route>
           </Switch>
+
           <Footer />
         </div>
       </Router>

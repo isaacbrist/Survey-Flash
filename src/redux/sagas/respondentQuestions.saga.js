@@ -13,6 +13,7 @@ function* fetchRespondentQuestions(action) {
     const response = yield axios.get(`/api/questions/${action.payload}`);
     console.log('Get all questions for the respondent:', response.data);
     yield put({ type: 'SET_RESPONDENT_QUESTIONS', payload: response.data });
+    yield put({ type: 'SET_SURVEY_ID', payload: action.payload })
   } catch (error) {
     console.log('Get all questions error in respondentQuestions saga', error);
   }
@@ -32,18 +33,18 @@ function* handleRespondentAnswers(action) {
 }
 
 //handles storing the active survey id
-function* handleStoreSurveyId(action) {
-  try {
-    console.log(
-      'Here is the handleStoreSurveyId, Action.payload is:',
-      action.payload
-    );
+// function* handleStoreSurveyId(action) {
+//   try {
+//     console.log(
+//       'Here is the handleStoreSurveyId, Action.payload is:',
+//       action.payload
+//     );
 
-    yield put({ type: 'SET_SURVEY_ID', payload: action.payload });
-  } catch (error) {
-    console.log('handleStoreSurveyId ERROR:', error);
-  }
-}
+//     yield put({ type: 'SET_SURVEY_ID', payload: action.payload });
+//   } catch (error) {
+//     console.log('handleStoreSurveyId ERROR:', error);
+//   }
+// }
 
 function* handleSubmitAnswers(action) {
   try {
@@ -59,7 +60,7 @@ function* handleSubmitAnswers(action) {
 }
 function* respondentQuestionsSaga() {
   yield takeEvery('SEND_SURVEY_ID', fetchRespondentQuestions);
-  yield takeEvery('SEND_SURVEY_ID', handleStoreSurveyId);
+  // yield takeEvery('SEND_SURVEY_ID', handleStoreSurveyId);
   yield takeEvery('HANDLE_ANSWERS', handleRespondentAnswers);
   yield takeEvery('HANDLE_SUBMIT', handleSubmitAnswers);
 }
