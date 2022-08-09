@@ -105,7 +105,7 @@ let surveyId=activeSurveyId
             )}
           </Route>
 
-          <Route exact path="/home">
+          {/* <Route exact path="/home">
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
@@ -114,7 +114,7 @@ let surveyId=activeSurveyId
               // Otherwise, show the Landing page
               <LandingPage />
             )}
-          </Route>
+          </Route> */}
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
