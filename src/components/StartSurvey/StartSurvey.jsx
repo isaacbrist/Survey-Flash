@@ -40,10 +40,12 @@ function StartSurvey() {
         <h2>Start the Survey!</h2>
       </div>
       <div>
+      
+     
         <img
-          src={`https://qrickit.com/api/qr.php?d=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/${activeSurveyId}`}
+          src={`https://qrickit.com/api/qr.php?d=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/{activeSurveyId}`}
           className="qrCode"
-        />
+        /> 
         <Stack direction="row" spacing={2}>
           <Button
             onClick={() => handleStartClick()}
