@@ -25,10 +25,10 @@ import RespondentCompletion from '../RespondentCompletion/RespondentCompletion';
 import ViewResponsesDetail from '../ViewResponsesDetail/ViewResponsesDetail';
 function App() {
   const dispatch = useDispatch();
- const questions = useSelector((store) => store.respondentQuestions);
+ const activeSurveyId = useSelector((store) => store.activeSurveyId);
   const user = useSelector((store) => store.user);
 let userId=user.id
-let surveyId=questions.survey_id
+let surveyId=activeSurveyId
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
