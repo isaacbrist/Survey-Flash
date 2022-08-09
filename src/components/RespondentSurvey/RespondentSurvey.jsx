@@ -78,7 +78,7 @@ function RespondentSurvey() {
       </Box>
       {/* map through all the questions linked to this survey */}
       <div>
-        {questions.map((question) => (
+        {questions?.map((question) => (
           <Grid item key={question.id} xs={2}>
             <h5>Content of Question: {question.question}</h5>
             <Box

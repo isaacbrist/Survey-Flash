@@ -46,7 +46,7 @@ function YourSurveys() {
         </Button>
       </form>
       <Grid container spacing={5}>
-        {surveys.map((survey) => (
+        {surveys?.map((survey) => (
           <Grid item key={survey.id} xs={2}>
             <YourSurveysItem survey={survey} />
           </Grid>
