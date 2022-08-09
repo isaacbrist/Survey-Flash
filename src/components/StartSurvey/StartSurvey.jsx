@@ -22,7 +22,7 @@ function StartSurvey() {
       console.log(
         'You clicked the Start Survey for the respondent. Here is the survey_id', activeSurveyId
       );
-      history.push(`/respondent-survey/${user.id}/${activeSurveyId}`);
+      history.push(`/respondent-survey/${activeSurveyId}`);
     };
 
   return (
@@ -41,7 +41,7 @@ function StartSurvey() {
       </div>
       <div>
         <img
-          src={`https://qrickit.com/api/qr.php?d=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/${user.id}/${activeSurveyId}`}
+          src={`https://qrickit.com/api/qr.php?d=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/${activeSurveyId}`}
           className="qrCode"
         />
         <Stack direction="row" spacing={2}>
