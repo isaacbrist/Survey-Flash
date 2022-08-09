@@ -43,7 +43,7 @@ function StartSurvey() {
       
      
         <img
-          src="https://qrickit.com/api/qr.php?d=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/{activeSurveyId}"
+          src="https://qrickit.com/api/qr.php?d=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/35"
           className="qrCode"
         /> 
         <Stack direction="row" spacing={2}>
