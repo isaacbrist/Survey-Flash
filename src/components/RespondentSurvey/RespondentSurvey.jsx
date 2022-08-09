@@ -20,7 +20,7 @@ function RespondentSurvey() {
 //grab the questions from the questions stored in the respondent questions store
   const questions = useSelector((store) => store.respondentQuestions);
   const responseData=useSelector((store)=> store.respondentResponse)
-questions.survey_id
+
 
 //function to handle the submit of all of the respondent's questions and responses
   function handleAnswers(event, property, survey_id, question) {

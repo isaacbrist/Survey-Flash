@@ -25,8 +25,10 @@ import RespondentCompletion from '../RespondentCompletion/RespondentCompletion';
 import ViewResponsesDetail from '../ViewResponsesDetail/ViewResponsesDetail';
 function App() {
   const dispatch = useDispatch();
-
+ const questions = useSelector((store) => store.respondentQuestions);
   const user = useSelector((store) => store.user);
+let userId=user.id
+let surveyId=questions.survey_id
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -40,7 +42,7 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
-          <Route exact path="/respondent-survey">
+          <Route exact path={`/respondent-survey/${userId}/${surveyId}`}>
             <RespondentSurvey />
           </Route>
 

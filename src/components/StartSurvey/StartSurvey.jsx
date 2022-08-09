@@ -9,6 +9,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 function StartSurvey() {
   const history = useHistory();
   const store = useSelector((store) => store);
+    const questions = useSelector((store) => store.respondentQuestions);
+    const user = useSelector((store) => store.user);
+    
    const handleBackClick = () => {
     console.log(
       'You clicked the back button!'
@@ -19,7 +22,7 @@ function StartSurvey() {
       console.log(
         'You clicked the Start Survey for the respondent. '
       );
-      history.push('/respondent-survey');
+      history.push(`/respondent-survey/${user.id}/${questions.survey_id}`);
     };
 
   return (
