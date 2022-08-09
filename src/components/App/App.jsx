@@ -36,15 +36,16 @@ let surveyId=activeSurveyId
 
   return (
     <Router>
+      <Route exact path={`/respondent-survey/${userId}/${surveyId}`}>
+        <RespondentSurvey />
+      </Route>
+
+      <Route exact path="/respondent-completion">
+        <RespondentCompletion />
+      </Route>
       <div>
         <Nav />
-        <Route exact path={`/respondent-survey/${userId}/${surveyId}`}>
-          <RespondentSurvey />
-        </Route>
 
-        <Route exact path="/respondent-completion">
-          <RespondentCompletion />
-        </Route>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -105,7 +106,7 @@ let surveyId=activeSurveyId
             )}
           </Route>
 
-          {/* <Route exact path="/home">
+          <Route exact path="/home">
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
@@ -114,7 +115,7 @@ let surveyId=activeSurveyId
               // Otherwise, show the Landing page
               <LandingPage />
             )}
-          </Route> */}
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
