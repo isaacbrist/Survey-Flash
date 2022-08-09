@@ -6,10 +6,12 @@ const router = express.Router();
  * GET route
  */
 
-router.get('/', (req, res) => {
-  const query = `SELECT * FROM "survey_table" ORDER BY "id" ASC`;
+router.get('/:id', (req, res) => {
+  const userId = req.params.id;
+  console.log('here is the userId in the survey router', userId)
+  const queryText = `SELECT * FROM "survey_table" WHERE "user_id" = $1 ORDER BY "id" ASC;`;
   pool
-    .query(query)
+    .query(queryText, [userId])
     .then((result) => {
       res.send(result.rows);
     })
@@ -19,13 +21,8 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/', (req, res) => {
-  // GET route code here
-});
 
-/**
- * POST route 
- */
+ 
 //Post a new survey
 router.post('/', (req, res) => {
 

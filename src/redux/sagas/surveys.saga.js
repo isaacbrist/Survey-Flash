@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import { put, takeEvery } from 'redux-saga/effects';
 // const allQuestions = useSelector((store) => store.questions);
 // worker Saga: will be fired on "FETCH_SURVEYS" actions
-function* fetchSurveys() {
+function* fetchSurveys(action) {
   try {
-    const response = yield axios.get('/api/surveys');
-    console.log('Get all surveys:', response.data);
+    console.log('FetchSurveys, action.payload is', action.payload)
+    const response = yield axios.get(`/api/surveys/${action.payload}` );
+    // console.log('Get all surveys:', response.data);
     yield put({ type: 'SET_SURVEYS', payload: response.data });
   } catch (error) {
     console.log('Get all surveys error', error);

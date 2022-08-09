@@ -18,8 +18,8 @@ function YourSurveys() {
   const [survey_name, set_survey_name] = useState('');
 
   useEffect(() => {
-    console.log('Getting all surveys');
-    dispatch({ type: 'FETCH_SURVEYS' });
+    console.log('Getting all surveys', user_id);
+    dispatch({ type: 'FETCH_SURVEYS', payload: user_id });
   }, []);
 
   const handleAddClick = () => {

@@ -41,7 +41,7 @@ let surveyId=activeSurveyId
       <Router>
         <div>
           <Nav />
-          <Route exact path={`/respondent-survey/${userId}/${surveyId}`}>
+          <Route path={`/respondent-survey/${userId}/${surveyId}`}>
             <RespondentSurvey />
           </Route>
 
