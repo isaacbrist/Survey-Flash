@@ -39,7 +39,7 @@ function StartSurvey() {
       <div>
         <img
           src="https://qrickit.com/api/qr.php?d=https://intense-gorge-67732.herokuapp.com/#/details"
-          className="qrCode"
+          className="qrCode"  
         />
         <Stack direction="row" spacing={2}>
           <Button
