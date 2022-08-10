@@ -41,8 +41,8 @@ function StartSurvey() {
       </div>
       <div>
         {/* /respondent-survey/{activeSurveyId} */}
-        <img 
-          src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/{activeSurveyId}&amp;size=100x100"
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/35&amp;size=100x100"
           className="qrCode"
         />
         <Stack direction="row" spacing={2}>
