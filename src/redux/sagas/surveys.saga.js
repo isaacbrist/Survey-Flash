@@ -1,7 +1,7 @@
 // import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 // const user= useSelector((store) => store.user);
 // const userId=user.id
 // worker Saga: will be fired on "FETCH_SURVEYS" actions
@@ -41,7 +41,7 @@ function* postSurvey(action) {
 }
 
 function* surveysSaga() {
-  yield takeEvery('FETCH_SURVEYS', fetchSurveys);
+  yield takeLatest('FETCH_SURVEYS', fetchSurveys);
   yield takeEvery('DELETE_SURVEY', deleteSurvey);
   yield takeEvery('ADD_SURVEY', postSurvey);
 }

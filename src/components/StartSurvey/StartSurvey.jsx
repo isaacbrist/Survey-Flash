@@ -8,7 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 //Page to display the QR code for survey takers to use to start the survey.
 function StartSurvey() {
   const history = useHistory();
- 
+
      const activeSurveyId = useSelector((store) => store.activeSurveyId);
     const user = useSelector((store) => store.user);
     
@@ -40,12 +40,11 @@ function StartSurvey() {
         <h2>Start the Survey!</h2>
       </div>
       <div>
-      
-     
-        <img
-          src="https://qrickit.com/api/qr.php?d=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/35"
+        {/* /respondent-survey/{activeSurveyId} */}
+        <img 
+          src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/{activeSurveyId}&amp;size=100x100"
           className="qrCode"
-        /> 
+        />
         <Stack direction="row" spacing={2}>
           <Button
             onClick={() => handleStartClick()}
