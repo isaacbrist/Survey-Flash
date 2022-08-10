@@ -60,7 +60,7 @@ function RespondentSurvey() {
       </div>
 
       <h2>Name of the user who sent the survey</h2>
-      {/* <h3>Title of Survey: {activeSurvey.survey_name}</h3> */}
+      {/* <h3> {activeSurvey.survey_name}</h3> */}
 
       <Box
         component="form"
@@ -127,7 +127,7 @@ function RespondentSurvey() {
         ))}
         <Button
           variant="contained"
-          size=""
+          size="large"
           onClick={handleSubmit}
           type="submit"
           button="true"

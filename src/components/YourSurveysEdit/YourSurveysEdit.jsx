@@ -140,7 +140,7 @@ function YourSurveysEdit() {
       </form>
       {/* map through all the questions linked to this survey so that you can edit */}
       <div>
-        {/* <form onSubmit={handleSubmitQuestion}> */}
+       
           {questions.map((question) => (
             <Grid item key={question.id} xs={2}>
               <h3>Content of Question: {question.question}</h3>
@@ -163,7 +163,7 @@ function YourSurveysEdit() {
               </Stack>
             </Grid>
           ))}
-        {/* </form> */}
+   
       </div>
       <Button onClick={(event) => handleUpdateAll(event)}>
         Save all edits

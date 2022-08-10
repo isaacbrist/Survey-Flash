@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import SendIcon from '@mui/icons-material/Send';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 function YourSurveysItem(props) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function YourSurveysItem(props) {
       props.survey.id
     );
     dispatch({ type: 'DELETE_SURVEY', payload: props.survey.id });
+    dispatch({ type: 'FETCH_SURVEYS', payload: props.survey.user_id });
   };
 
   //this button will have to dispatch the id of the asurvey to a new reducer to keep the id temporarily so that the 

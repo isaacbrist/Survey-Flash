@@ -25,6 +25,7 @@ function YourSurveys() {
   const handleAddClick = () => {
     console.log('You clicked the add button!');
     dispatch({ type: 'ADD_SURVEY', payload: { user_id, survey_name } });
+    dispatch({ type: 'FETCH_SURVEYS', payload: user_id });
     set_survey_name('');
   };
 

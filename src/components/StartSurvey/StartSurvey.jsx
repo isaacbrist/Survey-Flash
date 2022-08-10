@@ -8,7 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 //Page to display the QR code for survey takers to use to start the survey.
 function StartSurvey() {
   const history = useHistory();
-  const store = useSelector((store) => store);
+ 
      const activeSurveyId = useSelector((store) => store.activeSurveyId);
     const user = useSelector((store) => store.user);
     

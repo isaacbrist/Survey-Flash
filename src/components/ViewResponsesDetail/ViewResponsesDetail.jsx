@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -11,17 +11,15 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 //Here is where we can see the responses for an individual survey
 
 function ViewResponsesDetail() {
-
   const dispatch = useDispatch();
   const history = useHistory();
-const responses = useSelector((store) => store.viewResponse);
-   
+  const responses = useSelector((store) => store.viewResponse);
 
-//back button
-     const handleBackClick = () => {
-       console.log('You clicked the back button!');
-       history.push('/view-responses');
-     };
+  //back button
+  const handleBackClick = () => {
+    console.log('You clicked the back button!');
+    history.push('/view-responses');
+  };
   return (
     <div>
       {/* Back button */}
@@ -37,18 +35,16 @@ const responses = useSelector((store) => store.viewResponse);
       <div className="container">
         <p>View Responses-Detail</p>
       </div>
-   
+
       {/* map through all the questions and responses linked to this survey */}
       <div>
-       
-          {responses.map((response) => (
-            <Grid item key={response.id} xs={2}>
-              <h5>Name: {response.name}</h5>
-              <h5>Question and Response: {response.question}</h5>
-              <h6>{response.response}</h6>
-            </Grid>
-          ))}
-       
+        {responses.map((response) => (
+          <Grid item key={response.id} xs={2}>
+            <h5>Name: {response.name}</h5>
+            <h5>Question and Response: {response.question}</h5>
+            <h6>{response.response}</h6>
+          </Grid>
+        ))}
       </div>
     </div>
   );
