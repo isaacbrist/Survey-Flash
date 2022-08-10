@@ -10,7 +10,7 @@ router.get('/:id/qrCode', (req, res) => {
       method: 'GET',
       url: 'https://api.qrserver.com/v1/create-qr-code/',
       params: {
-        data: `https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com?/#/respondent-survey/${req.params.id}`,
+        data: `https://frozen-sands-52026.herokuapp.com/#/respondent-survey/${req.params.id}`,
       },
     })
       .then((apiRes) => {
