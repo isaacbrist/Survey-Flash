@@ -26,7 +26,7 @@ function StartSurvey() {
       'You clicked the Start Survey for the respondent. Here is the survey_id',
       activeSurveyId
     );
-    history.push(`/respondent-survey${activeSurveyId}`);
+    history.push(`/respondent-survey/${activeSurveyId}`);
   };
 
   // this will set the qr code to bring others to the beginning of the rating pages for this specific wine

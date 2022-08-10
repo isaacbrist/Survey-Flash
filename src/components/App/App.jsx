@@ -45,10 +45,10 @@ let surveyId=activeSurveyId
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
-            <Route path='/respondent-survey/:surveyId'>
+            <Route exact path="/respondent-survey/:activeSurveyId">
               <RespondentSurvey />
             </Route>
-            <Route path="/respondent-completion">
+            <Route exact path="/respondent-completion">
               <RespondentCompletion />
             </Route>
             {/* For protected routes, the view could show one of several things on the same route.
