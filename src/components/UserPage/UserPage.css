@@ -1,3 +1,9 @@
 .container{
-    background-color: #fff490; 
+    background-color: #fdd835; 
+    max-width: 70%;
+    max-height: 70%;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
 }
