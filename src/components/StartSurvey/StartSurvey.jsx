@@ -22,7 +22,7 @@ function StartSurvey() {
       console.log(
         'You clicked the Start Survey for the respondent. Here is the survey_id', activeSurveyId
       );
-      history.push(`/respondent-survey/${activeSurveyId}`);
+      history.push(`/respondent-survey${activeSurveyId}`);
     };
 
   return (
@@ -42,7 +42,7 @@ function StartSurvey() {
       <div>
         {/* /respondent-survey/{activeSurveyId} */}
         <img
-          src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com/#/respondent-survey/35&amp;size=100x100"
+          src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com/#/respondent-survey35&amp;size=100x100"
           className="qrCode"
         />
         <Stack direction="row" spacing={2}>
