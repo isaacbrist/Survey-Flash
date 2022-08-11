@@ -9,3 +9,10 @@
 margin: auto;
 
 }
+.centerContainer{
+    align-items: center;
+        align-self: center;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+}

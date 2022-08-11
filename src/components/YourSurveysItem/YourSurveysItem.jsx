@@ -13,12 +13,25 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import SendIcon from '@mui/icons-material/Send';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+
 function YourSurveysItem(props) {
+
+
+
+  
   const history = useHistory();
   const dispatch = useDispatch();
   //
-  const handleEditClick = () => {
+  const handleEditClick = (event) => {
+    event.preventDefault()
     //dispatch survey info to the redux store and then route user to the edit store
     //goes to the edit survey reducer
     dispatch({ type: 'SET_EDIT_SURVEY', payload: props.survey });
@@ -28,7 +41,8 @@ function YourSurveysItem(props) {
     history.push('/your-surveys-edit');
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (event) => {
+        event.preventDefault();
     console.log(
       'You clicked the delete button! Here is that id',
       props.survey.id
@@ -39,8 +53,8 @@ function YourSurveysItem(props) {
 
   //this button will have to dispatch the id of the asurvey to a new reducer to keep the id temporarily so that the 
   //qr code could grab it and so that the correct questions render for the respondent.
-  const handleStartClick = () => {
-    
+  const handleStartClick = (event) => {
+        event.preventDefault();
     console.log(
       'You clicked the Start Survey button! Here is the id of the survey',
       props.survey.id
@@ -49,45 +63,53 @@ function YourSurveysItem(props) {
     history.push('/your-surveys-start-survey');
   };
   return (
-    <div>
-      <Stack direction="row" spacing={2}>
-        <Button
-          onClick={() => handleStartClick()}
-          variant="contained"
-          endIcon={<SendIcon />}
-        >
-          Start Survey
-        </Button>
-      </Stack>
-      <Paper
-        className="bColor"
-        direction="row"
-        justifycontent="center"
-        alignitems="center"
-      >
+    
+    <TableRow
+      sx={{
+        '&: &:last-child th': { border: 0 },
+        '& button': { m: 1, padding: 1 },
+      }}
+    >
+      <TableCell component="th" scope="row">
         <Card>
-          <div className="bColor">
-            <CardActionArea onClick={() => handleEditClick()}>
+          <div>
+            <CardActionArea onClick={() => handleEditClick(event)}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h3">
-                  {props.survey.survey_name} {props.survey.administered}{' '}
-                  {props.survey.date_administered}
+                  {props.survey.survey_name}
                 </Typography>
               </CardContent>
             </CardActionArea>
           </div>
         </Card>
-      </Paper>
-      <Stack direction="row" spacing={2}>
-        <Button
-          onClick={() => handleDeleteClick()}
-          variant="contained"
-          startIcon={<DeleteIcon />}
-        >
-          Delete
-        </Button>
-      </Stack>
-    </div>
+      </TableCell>
+      <TableCell align="right">
+        <Stack direction="row" spacing={1}>
+          <Button
+           
+            color="primary"
+            onClick={() => handleStartClick(event)}
+            variant="contained"
+            size="small"
+            endIcon={<SendIcon />}
+          >
+            <Typography variant="body1">Start Survey</Typography>
+          </Button>
+        </Stack>
+      </TableCell>
+      <TableCell align="right">
+        <Stack direction="row" spacing={1}>
+          <Button
+            size="small"
+            onClick={() => handleDeleteClick(event)}
+            variant="contained"
+            endIcon={<DeleteIcon />}
+          >
+            <Typography variant="body1">Delete</Typography>
+          </Button>
+        </Stack>
+      </TableCell>
+    </TableRow>
   );
 }
 

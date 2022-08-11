@@ -75,14 +75,16 @@ function UserPage() {
     <div className="container">
       <div>
         <Paper
-          className="bColor"
+          // className="bColor"
+          color='secondary'
           direction="row"
           justifycontent="center"
           alignitems="center"
         >
-          <Card>
-            <div className="bColor">
-              <Typography gutterBottom variant="h5" component="h5">
+          <Card >
+            <div 
+            >
+              <Typography gutterBottom variant="h5" component="h5" >
                 Click on the Your Surveys Button at the top right to get started!
               </Typography>
             </div>
@@ -92,7 +94,6 @@ function UserPage() {
      
 
       <h3>Welcome, {user.username}!</h3>
-      <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
     </div>
   );
