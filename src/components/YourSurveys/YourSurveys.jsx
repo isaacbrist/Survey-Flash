@@ -33,19 +33,20 @@ function YourSurveys() {
     <>
       <div className="container">
         <p>Here are all of Your Surveys!</p>
+        <form onSubmit={handleAddClick}>
+          <input
+            type="text"
+            placeholder="Survey Name"
+            value={survey_name}
+            onChange={(event) => set_survey_name(event.target.value)}
+          />
+          <Button type="submit" variant="contained">
+            Add
+          </Button>
+        </form>
       </div>
       <div>Add a new survey!</div>
-      <form onSubmit={handleAddClick}>
-        <input
-          type="text"
-          placeholder="Survey Name"
-          value={survey_name}
-          onChange={(event) => set_survey_name(event.target.value)}
-        />
-        <Button type="submit" variant="contained">
-          Add
-        </Button>
-      </form>
+
       <Grid container spacing={5}>
         {surveys?.map((survey) => (
           <Grid item key={survey.id} xs={2}>
