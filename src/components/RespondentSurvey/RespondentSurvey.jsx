@@ -12,7 +12,7 @@ import SendIcon from '@mui/icons-material/Send';
 //Here is where the respondent responds to questions
 
 function RespondentSurvey() {
-  const { surveyId } = useParams();
+  const { activeSurveyId } = useParams();
   const [name, setName] = useState('');
   const [response, setResponse] = useState('');
   const dispatch = useDispatch();
@@ -20,11 +20,11 @@ function RespondentSurvey() {
   //grab the questions from the questions stored in the respondent questions store
   const questions = useSelector((store) => store.respondentQuestions);
   const responseData = useSelector((store) => store.respondentResponse);
-  const activeSurveyId = useSelector((store) => store.activeSurveyId);
+  // const surveyId = useSelector((store) => store.activeSurveyId);
   // makes sure that the questions render
   useEffect(() => {
     console.log('Getting all surveys', activeSurveyId);
-    dispatch({ type: 'SEND_SURVEY_ID', payload: surveyId });
+    dispatch({ type: 'SEND_SURVEY_ID', payload: activeSurveyId });
   }, []);
 
 

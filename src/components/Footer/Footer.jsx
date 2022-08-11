@@ -7,7 +7,7 @@ import './Footer.css';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer>&copy; <img className='imgLogo' src='/images/lightning.png'/>Survey Flash</footer>;
+  return <footer>&copy; <img className='imgLogo' src='/images/lightning.png'/>Isaac Brist</footer>;
 }
 
 export default Footer;
