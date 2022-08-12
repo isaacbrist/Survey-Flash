@@ -129,7 +129,7 @@ function YourSurveysEdit() {
       </form>
       {/* Edit the name of the survey */}
       <h2>Edit Your Questions</h2>
-      <h3>Title of Survey: {editSurveyName.survey_name}</h3>
+      <h3>{editSurveyName.survey_name}</h3>
 
       <form onSubmit={handleSubmitName}>
         <input
@@ -143,7 +143,7 @@ function YourSurveysEdit() {
       <div>
         {questions.map((question) => (
           <Grid item key={question.id} xs={2}>
-            <h3>Content of Question: {question.question}</h3>
+            <h3> {question.question}</h3>
 
             <input
               onChange={(event) => handleQuestionsChange(event, question.id)}
