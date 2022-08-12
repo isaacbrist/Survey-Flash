@@ -82,9 +82,9 @@ function RespondentSurvey() {
         />
       </Box>
       {/* map through all the questions linked to this survey */}
-      <div>
+      <div >
         {questions?.map((question) => (
-          <Grid item key={question.id} xs={2}>
+          <div className="centerContainer" item key={question.id} xs={2}>
             <h5>{question.question}</h5>
             <Box
               component="form"
@@ -123,7 +123,7 @@ function RespondentSurvey() {
               </Button>
             </Box>
             {/* <input type="submit" value="Update Question" /> */}
-          </Grid>
+          </div>
         ))}
         <Button
           variant="contained"
