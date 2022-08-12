@@ -28,7 +28,7 @@ function YourSurveys() {
   const history = useHistory();
   const surveys = useSelector((store) => store.surveys);
   const [survey_name, set_survey_name] = useState('');
-
+//buttons not rendering because of this dispatch?
   useEffect(() => {
     console.log('Getting all surveys', user_id);
     dispatch({ type: 'FETCH_SURVEYS', payload: user_id });
@@ -77,8 +77,8 @@ function YourSurveys() {
         </Button>
       </Box>
 
-      <TableContainer sx={{ width: 800, margin: 'auto' }} component={Paper}>
-        <Table sx={{ minWidth: 200 }} aria-label="simple table">
+      <TableContainer sx={{ width: 800, margin: 'auto', }} component={Paper}>
+        <Table sx={{ minWidth: 200,  }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell align="center">
@@ -95,7 +95,7 @@ function YourSurveys() {
             </TableRow>
           </TableHead>
 
-          {surveys?.map((survey) => (
+          {surveys.map((survey) => (
             <TableBody key={survey.id}>
               <YourSurveysItem survey={survey} />
             </TableBody>

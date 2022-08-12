@@ -23,7 +23,7 @@ function RespondentCompletion() {
 
   return (
     <div className='centerContainer'>
-      <Stack direction="row" spacing={2}>
+      {/* <Stack direction="row" spacing={2}>
         <Button
           onClick={() => handleBackClick()}
           variant="contained"
@@ -31,7 +31,7 @@ function RespondentCompletion() {
         >
           Back
         </Button>
-      </Stack>
+      </Stack> */}
       <div>
         <h2>Thank you for completing the survey in a flash!</h2>
       </div>

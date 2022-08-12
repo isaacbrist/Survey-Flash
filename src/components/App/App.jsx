@@ -103,7 +103,7 @@ function App() {
                 <StartSurvey />
               </ProtectedRoute>
               <ProtectedRoute exact path="/about">
-                <About/>
+                <About />
               </ProtectedRoute>
               <Route exact path="/login">
                 {user.id ? (
@@ -143,9 +143,8 @@ function App() {
                 <h1>404</h1>
               </Route>
             </Switch>
-
-            <Footer />
           </div>
+          <Footer />
         </Router>
       </ThemeProvider>
     </>

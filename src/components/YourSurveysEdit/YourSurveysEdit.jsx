@@ -6,7 +6,25 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { padding } from '@mui/system';
 
 //Here is where we can edit an individual survey
 
@@ -99,77 +117,131 @@ function YourSurveysEdit() {
        history.push('/your-surveys');
      };
   return (
-    <div className='centerContainer'>
-      {/* Back button */}
+    <>
+      {/* <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Questions</TableCell>
+              <TableCell align="right">Calories</TableCell>
+              <TableCell align="right">Delete</TableCell>
+             
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">{row.calories}</TableCell>
+                <TableCell align="right">{row.fat}</TableCell>
+                <TableCell align="right">{row.carbs}</TableCell>
+                <TableCell align="right">{row.protein}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer> */}
 
-      <div className="container">
-        <p>Your Surveys-Edit</p>
-      </div>
-      <Stack direction="row" spacing={2}>
-        <Button
-          onClick={() => handleBackClick()}
-          variant="contained"
-          startIcon={<ArrowBackIcon />}
-        >
-          Back
-        </Button>
-      </Stack>
-      {/* New question button/form */}
-      <div>Add a new question!</div>
-      <form onSubmit={handleAddClick}>
-        <input
-          type="text"
-          placeholder="Type your question"
-          value={question}
-          onChange={(event) => setQuestion(event.target.value)}
-        />
-        <Button type="submit" variant="contained">
-          Add
-        </Button>
-      </form>
-      {/* Edit the name of the survey */}
-      <h2>Edit Your Questions</h2>
-      <h3>{editSurveyName.survey_name}</h3>
+      <div>
+        <div className="container">
+          <p>Edit Your Survey</p>
+        </div>
+        {/* Back button */}
+        <Stack direction="row" spacing={2}>
+          <Button
+            onClick={() => handleBackClick()}
+            variant="contained"
+            startIcon={<ArrowBackIcon />}
+          >
+            Back
+          </Button>
+        </Stack>
+        {/* Edit the name of the survey */}
 
-      <form onSubmit={handleSubmitName}>
-        <input
-          onChange={(event) => handleChange(event, 'survey_name')}
-          placeholder="Survey Name"
-          value={editSurveyName.survey_name}
-        />
-        <input type="submit" value="Update Survey" />
-      </form>
-      {/* map through all the questions linked to this survey so that you can edit */}
-      <div >
-        {questions.map((question) => (
-          <div key={question.id} xs={2}>
-            
-            <h3> {question.question}</h3>
+        <form onSubmit={handleSubmitName}>
+          <TextField
+            id="filled-basic"
+            required
+            color="primary"
+            label="Title"
+            variant="filled"
+            onChange={(event) => handleChange(event, 'survey_name')}
+            placeholder="Survey Name"
+            value={editSurveyName.survey_name}
+          />
 
-            <input
-              onChange={(event) => handleQuestionsChange(event, question.id)}
-              placeholder="Question"
-              value={question.question}
-            />
-            {/* <input type="submit" value="Update Question" /> */}
+          <Button
+            type="submit"
+            size="small"
+            className="centerContainer"
+            variant="contained"
+          >
+            Update Name
+          </Button>
+        </form>
+        {/* New question button/form */}
+        <div>Add a new question!</div>
+        <form onSubmit={handleAddClick}>
+          <TextField
+            id="filled-basic"
+            required
+            color="primary"
+            label="Your Question"
+            variant="filled"
+            type="text"
+            placeholder="Type your question"
+            value={question}
+            onChange={(event) => setQuestion(event.target.value)}
+          />
 
-            
+          <Button type="submit" variant="contained">
+            Add
+          </Button>
+        </form>
+
+        <h3>{editSurveyName.survey_name}</h3>
+
+        {/* map through all the questions linked to this survey so that you can edit */}
+        <div>
+          {questions.map((question) => (
+            <div key={question.id} xs={2}>
+              <h3> {question.question}</h3>
+
+              <TextField
+                id="filled-basic"
+                required
+                color="primary"
+                label="Question"
+                variant="filled"
+                type="text"
+                onChange={(event) => handleQuestionsChange(event, question.id)}
+                placeholder="Question"
+                value={question.question}
+              />
+
+              {/* <input type="submit" value="Update Question" /> */}
+
               <Button
-              className='centerContainer'
+                className="centerContainer"
                 onClick={() => handleDeleteClick(event, question.id)}
                 variant="contained"
                 startIcon={<DeleteIcon />}
               >
                 Delete
               </Button>
-      
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
+        <Button variant="contained" onClick={(event) => handleUpdateAll(event)}>
+          Save all edits
+        </Button>
       </div>
-      <Button variant="contained" onClick={(event) => handleUpdateAll(event)}>
-        Save all edits
-      </Button>
-    </div>
+    </>
   );
 }
 

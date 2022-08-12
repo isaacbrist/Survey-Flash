@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -63,10 +64,10 @@ function YourSurveysItem(props) {
     history.push('/your-surveys-start-survey');
   };
   return (
-    
     <TableRow
       sx={{
-        '&: &:last-child th': { border: 0 },
+        '&:last-child td &:last-child th': { border: 0 },
+        
         '& button': { m: 1, padding: 1 },
       }}
     >
@@ -86,8 +87,7 @@ function YourSurveysItem(props) {
       <TableCell align="right">
         <Stack direction="row" spacing={1}>
           <Button
-           
-            color="primary"
+            className="centerContainer"
             onClick={() => handleStartClick(event)}
             variant="contained"
             size="small"

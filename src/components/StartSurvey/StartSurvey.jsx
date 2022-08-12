@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 import SendIcon from '@mui/icons-material/Send';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 //Page to display the QR code for survey takers to use to start the survey.
@@ -43,6 +51,9 @@ function StartSurvey() {
 
   return (
     <div className="centerContainer">
+      <div className="container">
+        <p>Start the Survey!</p>
+      </div>
       <Stack direction="row" spacing={2}>
         <Button
           onClick={() => handleBackClick()}
@@ -52,9 +63,6 @@ function StartSurvey() {
           Back
         </Button>
       </Stack>
-      <div>
-        <h2>Start the Survey!</h2>
-      </div>
       <div>
         {/* /respondent-survey/{activeSurveyId} */}
         {/* <img
