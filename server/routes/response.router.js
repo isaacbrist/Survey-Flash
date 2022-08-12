@@ -4,7 +4,7 @@ const router = express.Router();
 const axios = require('axios');
 
 // 3rd party API call in order to generate a QR code to bring a respondent to the survey url
-router.get('/:id/qrCode', (req, res) => {
+router.get('/:id/qrCode', async (req, res) => {
 
     axios({
       method: 'GET',

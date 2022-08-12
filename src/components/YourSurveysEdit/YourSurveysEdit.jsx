@@ -101,6 +101,10 @@ function YourSurveysEdit() {
   return (
     <div>
       {/* Back button */}
+
+      <div className="container">
+        <p>Your Surveys-Edit</p>
+      </div>
       <Stack direction="row" spacing={2}>
         <Button
           onClick={() => handleBackClick()}
@@ -110,9 +114,6 @@ function YourSurveysEdit() {
           Back
         </Button>
       </Stack>
-      <div className="container">
-        <p>Your Surveys-Edit</p>
-      </div>
       {/* New question button/form */}
       <div>Add a new question!</div>
       <form onSubmit={handleAddClick}>
@@ -127,7 +128,7 @@ function YourSurveysEdit() {
         </Button>
       </form>
       {/* Edit the name of the survey */}
-      <h2>Edit Questions and name</h2>
+      <h2>Edit Your Questions</h2>
       <h3>Title of Survey: {editSurveyName.survey_name}</h3>
 
       <form onSubmit={handleSubmitName}>
@@ -140,34 +141,31 @@ function YourSurveysEdit() {
       </form>
       {/* map through all the questions linked to this survey so that you can edit */}
       <div>
-       
-          {questions.map((question) => (
-            <Grid item key={question.id} xs={2}>
-              <h3>Content of Question: {question.question}</h3>
+        {questions.map((question) => (
+          <Grid item key={question.id} xs={2}>
+            <h3>Content of Question: {question.question}</h3>
 
-              <input
-                onChange={(event) => handleQuestionsChange(event, question.id)}
-                placeholder="Question"
-                value={question.question}
-              />
-              {/* <input type="submit" value="Update Question" /> */}
+            <input
+              onChange={(event) => handleQuestionsChange(event, question.id)}
+              placeholder="Question"
+              value={question.question}
+            />
+            {/* <input type="submit" value="Update Question" /> */}
 
-              <Stack direction="row" spacing={2}>
-                <Button
-                  onClick={() => handleDeleteClick(event, question.id)}
-                  variant="contained"
-                  startIcon={<DeleteIcon />}
-                >
-                  Delete
-                </Button>
-              </Stack>
-            </Grid>
-          ))}
-   
+            <Stack direction="row" spacing={2}>
+              <Button
+                onClick={() => handleDeleteClick(event, question.id)}
+                variant="contained"
+                startIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
+            </Stack>
+          </Grid>
+        ))}
       </div>
-      <Button onClick={(event) => handleUpdateAll(event)}>
+      <Button variant="contained" onClick={(event) => handleUpdateAll(event)}>
         Save all edits
-
       </Button>
     </div>
   );

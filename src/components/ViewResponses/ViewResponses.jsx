@@ -24,7 +24,7 @@ function ViewResponses() {
   return (
     <>
       <div className="container">
-        <p>This is so that you can view your responses</p>
+        <p>View responses</p>
       </div>
       <Grid container spacing={5}>
         {surveys.map((survey) => (

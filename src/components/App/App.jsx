@@ -23,6 +23,7 @@ import StartSurvey from '../StartSurvey/StartSurvey';
 import RespondentSurvey from '../RespondentSurvey/RespondentSurvey';
 import RespondentCompletion from '../RespondentCompletion/RespondentCompletion';
 import ViewResponsesDetail from '../ViewResponsesDetail/ViewResponsesDetail';
+import About from '../About/About';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 function App() {
@@ -100,6 +101,9 @@ function App() {
               </ProtectedRoute>
               <ProtectedRoute exact path="/your-surveys-start-survey">
                 <StartSurvey />
+              </ProtectedRoute>
+              <ProtectedRoute exact path="/about">
+                <About/>
               </ProtectedRoute>
               <Route exact path="/login">
                 {user.id ? (
