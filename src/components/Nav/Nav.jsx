@@ -44,41 +44,44 @@ function Nav() {
     //       <Typography variant="h5">Hello World</Typography>
     //     </div>
     //   </Drawer>
-      <div className="nav">
-        <Link to="/home">
-          <h2 className="nav-title">
-            {' '}
-            <img className="imgLogo" src="/images/lightning.png" />
-            Survey Flash
-          </h2>
-        </Link>
-        <div>
-          {/* If no user is logged in, show these links */}
-          {!user.id && (
-            // If there's no user, show login/registration links
-            <Link className="navLink" to="/login">
-              Login / Register
+    <div className="nav">
+      <Link to="/home">
+        <h2 className="nav-title">
+          {' '}
+          <img className="imgLogo" src="/images/lightning.png" />
+          Survey Flash
+        </h2>
+      </Link>
+      <div>
+        {/* If no user is logged in, show these links */}
+        {!user.id && (
+          // If there's no user, show login/registration links
+          <Link className="navLink" to="/login">
+            Login / Register
+          </Link>
+        )}
+
+        {/* If a user is logged in, show these links */}
+        {user.id && (
+          <>
+            <Link className="navLink" to="/user">
+              Home
             </Link>
-          )}
 
-          {/* If a user is logged in, show these links */}
-          {user.id && (
-            <>
-              <Link className="navLink" to="/user">
-                Home
-              </Link>
-
-              <Link className="navLink" to="/view-responses">
-                View Responses
-              </Link>
-              <Link className="navLink" to="/your-surveys">
-                Your Surveys
-              </Link>
-              <LogOutButton className="navLink" />
-            </>
-          )}
-        </div>
+            <Link className="navLink" to="/view-responses">
+              View Responses
+            </Link>
+            <Link className="navLink" to="/your-surveys">
+              Your Surveys
+            </Link>
+            <Link className="navLink" to="/about">
+              About
+            </Link>
+            <LogOutButton className="navLink" />
+          </>
+        )}
       </div>
+    </div>
     // </div>
   );
 }

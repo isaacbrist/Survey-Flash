@@ -56,10 +56,10 @@ function RespondentSurvey() {
   return (
     <div>
       <div className="container">
-        <p>Respondent Survey</p>
+        <p>Survey Flash</p>
       </div>
 
-      <h2>Name of the user who sent the survey</h2>
+      {/* <h2>Name of the user who sent the survey</h2> */}
       {/* <h3> {activeSurvey.survey_name}</h3> */}
 
       <Box
@@ -85,7 +85,7 @@ function RespondentSurvey() {
       <div>
         {questions?.map((question) => (
           <Grid item key={question.id} xs={2}>
-            <h5>Content of Question: {question.question}</h5>
+            <h5>{question.question}</h5>
             <Box
               component="form"
               sx={{

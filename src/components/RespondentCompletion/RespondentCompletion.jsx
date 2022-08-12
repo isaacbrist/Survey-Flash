@@ -14,12 +14,12 @@ function RespondentCompletion() {
     );
     history.push('/respondent-survey');
    }
-    const handleTemporaryClick = () => {
-      console.log(
-        'You clicked the Temporary Button. '
-      );
-      history.push('/');
-    };
+    // const handleTemporaryClick = () => {
+    //   console.log(
+    //     'You clicked the Temporary Button. '
+    //   );
+    //   history.push('/');
+    // };
 
   return (
     <>
@@ -37,7 +37,7 @@ function RespondentCompletion() {
       </div>
       <div>
       
-        <Stack direction="row" spacing={2}>
+        {/* <Stack direction="row" spacing={2}>
           <Button
             onClick={() => handleTemporaryClick()}
             variant="contained"
@@ -45,7 +45,7 @@ function RespondentCompletion() {
           >
             Temporary Button
           </Button>
-        </Stack>
+        </Stack> */}
       </div>
     </>
   );

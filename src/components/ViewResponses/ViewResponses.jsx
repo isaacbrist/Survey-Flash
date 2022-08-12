@@ -31,7 +31,7 @@ function ViewResponses() {
   return (
     <>
       <div className="container">
-        <p>This is so that you can view your responses</p>
+        <p>View responses</p>
       </div>
       <TableContainer sx={{ width: 800, margin: 'auto' }} component={Paper}>
         <Table sx={{ minWidth: 200 }} aria-label="simple table">
