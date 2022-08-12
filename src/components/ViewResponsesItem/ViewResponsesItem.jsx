@@ -13,6 +13,11 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import SendIcon from '@mui/icons-material/Send';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 function ViewResponsesItem(props) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -31,27 +36,31 @@ function ViewResponsesItem(props) {
     history.push('/view-responses-detail');
   };
   return (
-    <div>
-      <Paper
-        className="bColor"
-        direction="row"
-        justifycontent="center"
-        alignitems="center"
+   
+      <TableRow
+        sx={{
+          '&: &:last-child th': { border: 1, textAlign: 'center' },
+          '& button': { m: 1, padding: 1 },
+        }}
       >
-        <Card>
-          <div className="bColor">
-            <CardActionArea onClick={() => handleViewClick()}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h3">
-                  {props.survey.survey_name} {props.survey.administered}{' '}
-                  {props.survey.date_administered}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </div>
-        </Card>
-      </Paper>
-    </div>
+        <TableCell component="th" scope="row">
+          <Card>
+            <div>
+              <CardActionArea onClick={() => handleViewClick()}
+                >
+                <CardContent>
+                  <Typography textAlign='center' gutterBottom variant="h5" component="h3">
+                    {props.survey.survey_name}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </div>
+          </Card>
+        </TableCell>
+      
+      </TableRow>
+
+
   );
 }
 

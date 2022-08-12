@@ -6,6 +6,13 @@ import Typography from '@mui/material/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@mui/material/Button';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+
 import ViewResponsesItem from '../ViewResponsesItem/ViewResponsesItem';
 //this will list all surveys that have been administered from one user and will have a button
 //where they can view it
@@ -26,13 +33,25 @@ function ViewResponses() {
       <div className="container">
         <p>This is so that you can view your responses</p>
       </div>
-      <Grid container spacing={5}>
-        {surveys.map((survey) => (
-          <Grid item key={survey.id} xs={2}>
-            <ViewResponsesItem survey={survey} />
-          </Grid>
-        ))}
-      </Grid>
+      <TableContainer sx={{ width: 800, margin: 'auto' }} component={Paper}>
+        <Table sx={{ minWidth: 200 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">
+                <Typography component="h3">Title </Typography>
+              </TableCell>
+              
+            </TableRow>
+          </TableHead>
+
+          {surveys?.map((survey) => (
+            <TableBody key={survey.id}>
+              <ViewResponsesItem survey={survey} />
+            </TableBody>
+          ))}
+        </Table>
+      </TableContainer>
+     
     </>
   );
 }
