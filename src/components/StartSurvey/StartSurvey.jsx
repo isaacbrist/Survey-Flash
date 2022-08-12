@@ -42,7 +42,7 @@ function StartSurvey() {
   };
 
   return (
-    <>
+    <div className="centerContainer">
       <Stack direction="row" spacing={2}>
         <Button
           onClick={() => handleBackClick()}
@@ -61,19 +61,18 @@ function StartSurvey() {
           src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com?/#/respondent-survey35&amp;size=100x100"
           className="qrCode"
         /> */}
-
-        <img src={qrCode} />
-        <Stack direction="row" spacing={2}>
-          <Button
-            onClick={() => handleStartClick()}
-            variant="contained"
-            endIcon={<SendIcon />}
-          >
-            Start Survey
-          </Button>
-        </Stack>
+        <div>
+          <img src={qrCode} />
+        </div>
+        <Button
+          onClick={() => handleStartClick()}
+          variant="contained"
+          endIcon={<SendIcon />}
+        >
+          Start Survey
+        </Button>
       </div>
-    </>
+    </div>
   );
 }
 

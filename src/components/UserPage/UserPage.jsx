@@ -82,7 +82,7 @@ function UserPage() {
           alignitems="center"
         >
           <Card >
-            <div 
+            <div className='centerContainer'
             >
               <Typography gutterBottom variant="h5" component="h5" >
                 Click on the Your Surveys Button at the top right to get started!

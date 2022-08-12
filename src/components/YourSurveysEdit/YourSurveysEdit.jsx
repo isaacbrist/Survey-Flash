@@ -99,7 +99,7 @@ function YourSurveysEdit() {
        history.push('/your-surveys');
      };
   return (
-    <div>
+    <div className='centerContainer'>
       {/* Back button */}
 
       <div className="container">
@@ -140,9 +140,10 @@ function YourSurveysEdit() {
         <input type="submit" value="Update Survey" />
       </form>
       {/* map through all the questions linked to this survey so that you can edit */}
-      <div>
+      <div >
         {questions.map((question) => (
-          <Grid item key={question.id} xs={2}>
+          <div key={question.id} xs={2}>
+            
             <h3> {question.question}</h3>
 
             <input
@@ -152,16 +153,17 @@ function YourSurveysEdit() {
             />
             {/* <input type="submit" value="Update Question" /> */}
 
-            <Stack direction="row" spacing={2}>
+            
               <Button
+              className='centerContainer'
                 onClick={() => handleDeleteClick(event, question.id)}
                 variant="contained"
                 startIcon={<DeleteIcon />}
               >
                 Delete
               </Button>
-            </Stack>
-          </Grid>
+      
+          </div>
         ))}
       </div>
       <Button variant="contained" onClick={(event) => handleUpdateAll(event)}>

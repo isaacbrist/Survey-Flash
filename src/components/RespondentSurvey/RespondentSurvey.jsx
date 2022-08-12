@@ -54,7 +54,7 @@ function RespondentSurvey() {
   }
 
   return (
-    <div>
+    <div className='centerContainer'>
       <div className="container">
         <p>Survey Flash</p>
       </div>

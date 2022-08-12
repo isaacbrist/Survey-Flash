@@ -16,3 +16,14 @@ margin: auto;
         text-align: center;
         margin: auto;
 }
+
+.aboutContainer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+        align-self: center;
+        justify-content: center;
+        text-align: center;
+        margin-left: 30%;
+        margin-right: 30%;
+}
