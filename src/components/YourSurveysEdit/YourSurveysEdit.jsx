@@ -102,14 +102,14 @@ function YourSurveysEdit() {
     console.log('You clicked the add button!');
     console.log('survey_id is:', survey_id);
     dispatch({ type: 'ADD_QUESTION', payload: { survey_id, question } });
-    dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
+    
     setQuestion('');
   };
   //deletes a question
   const handleDeleteClick = (event, id) => {
     console.log('You clicked the delete button! Here is that id', id);
     dispatch({ type: 'DELETE_QUESTION', payload: id });
-    dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
+   
   };
 //back button
      const handleBackClick = () => {

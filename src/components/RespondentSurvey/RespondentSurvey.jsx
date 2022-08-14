@@ -29,22 +29,8 @@ function RespondentSurvey() {
 
 
 
-  //function to handle the submit of all of the respondent's questions and responses
-  // function handleAnswers(event, property, survey_id, question) {
-  //   dispatch({
-  //     type: 'HANDLE_ANSWERS',
-  //     payload: {
-  //       property: property,
-  //       name: name,
-  //       question: question,
-  //       survey_id: survey_id,
-  //       response: response,
-  //     },
-  //   });
-  //   setResponse('');
-  // }
-
-  function handleSubmit(event, property, survey_id, question) {
+  // function to handle the submit of all of the respondent's questions and responses
+  function handleAnswers(event, property, survey_id, question) {
     dispatch({
       type: 'HANDLE_ANSWERS',
       payload: {
@@ -56,6 +42,10 @@ function RespondentSurvey() {
       },
     });
     setResponse('');
+  }
+
+  function handleSubmit() {
+
     console.log('You clicked the submit button', responseData);
     dispatch({
       type: 'HANDLE_SUBMIT',

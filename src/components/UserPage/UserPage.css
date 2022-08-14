@@ -1,5 +1,5 @@
 .container{
-    background-color: #fdd835; 
+    background-color: #90CCF0; 
     /* max-width: 70%;
     max-height: 70%; */
     align-items: center;
@@ -15,8 +15,18 @@ margin: auto;
         justify-content: center;
         text-align: center;
         margin: auto;
+        margin-top: 15px;
 }
-
+.tableHeader{
+    background-color: #FCCD04;
+}
+/* #ffa726; */
+.tableBody{
+    background-color: #5DA2D5;
+}
+/* .tableItems{
+    background-color: #FCCD04;
+} */
 .aboutContainer{
     display:flex;
     flex-direction: column;

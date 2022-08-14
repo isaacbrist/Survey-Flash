@@ -74,26 +74,19 @@ function UserPage() {
   return (
     <div className="container">
       <div>
-        <Paper
-          // className="bColor"
-          color='secondary'
-          direction="row"
-          justifycontent="center"
-          alignitems="center"
-        >
-          <Card >
-            <div className='centerContainer'
-            >
-              <Typography gutterBottom variant="h5" component="h5" >
-                Click on the Your Surveys Button at the top right to get started!
+        <h2>Welcome, {user.username}!</h2>
+      
+          <Card className="aboutContainer">
+            <div className="centerContainer">
+              <Typography gutterBottom variant="h5" component="h5">
+                Click on the Your Surveys Button at the top right to get
+                started!
               </Typography>
             </div>
           </Card>
-        </Paper>
+      
       </div>
-     
 
-      <h3>Welcome, {user.username}!</h3>
       <LogOutButton className="btn" />
     </div>
   );

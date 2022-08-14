@@ -6,7 +6,7 @@
 
   /* margin: 0 0 30px; */
   /* background-color: #ffd700; */
-  background-color: #ffc107;
+  background-color: #FCCD04;
   overflow: hidden;
 }
 
@@ -25,7 +25,7 @@
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #ffc107;
+  background-color: #FCCD04;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
