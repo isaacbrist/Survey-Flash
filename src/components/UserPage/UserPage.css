@@ -22,18 +22,30 @@ margin: auto;
 }
 /* #ffa726; */
 .tableBody{
-    background-color: #5DA2D5;
+    background-color: #4894cd;
 }
-/* .tableItems{
-    background-color: #FCCD04;
-} */
+.tableItems{
+    padding-top: 0px;
+    margin-top: 0px;
+    background-color:  #FCCD04;
+}
 .aboutContainer{
     display:flex;
     flex-direction: column;
-    align-items: center;
-        align-self: center;
-        justify-content: center;
-        text-align: center;
-        margin-left: 30%;
-        margin-right: 30%;
+    align-items: left;
+    
+        text-align: left;
+        /* margin-left: 30%; */
+        margin-right: 54%; 
+        padding-left: 25px;
+}
+
+.backButton{
+    display: flex;
+        flex-direction: column;
+        align-items: left;
+        text-align: left;
+            padding-top: 0px;
+                margin-top: 0px;
+                background-color: #FCCD04;
 }

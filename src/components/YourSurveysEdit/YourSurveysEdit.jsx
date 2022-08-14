@@ -24,11 +24,33 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { padding } from '@mui/system';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 //Here is where we can edit an individual survey
 
 function YourSurveysEdit() {
+  const [openName, setOpenName] = React.useState(false);
+  const [openQuestion, setOpenQuestion] = React.useState(false);
+  const handleNameOpen = () => {
+    setOpenName(true);
+  };
+
+  const handleNameClose = () => {
+    setOpenName(false);
+  };
+  const handleQuestionOpen = () => {
+    setOpenQuestion(true);
+  };
+
+  const handleQuestionClose = () => {
+    setOpenQuestion(false);
+  };
+
   // useEffect(() => {
   //   console.log('Getting all questions');
   //   dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
@@ -57,9 +79,10 @@ function YourSurveysEdit() {
 
   // function to tell a saga to do a put request
   function handleUpdateAll(event) {
-    console.log('Here are all the questions that we are updating', questions)
+    console.log('Here are all the questions that we are updating', questions);
     dispatch({
-      type: 'UPDATE_ALL', payload: {questions, survey_id}
+      type: 'UPDATE_ALL',
+      payload: { questions, survey_id },
     });
     //go back to your surveys
     history.push('/your-surveys');
@@ -70,17 +93,16 @@ function YourSurveysEdit() {
   function handleSubmitName(event) {
     event.preventDefault();
     console.log('You clicked the submit button');
-    //for sending the title. 
+    //for sending the title.
 
     // PUT REQUEST to /surveys/:id
     axios
       .put(`/api/surveys/${editSurveyName.id}`, editSurveyName)
-      .then((response) => {
-   
-      })
+      .then((response) => {})
       .catch((error) => {
         console.log('error on PUT: ', error);
       });
+    setOpenName(false);
   }
 
   // function handleSubmitQuestion(event, question) {
@@ -91,7 +113,7 @@ function YourSurveysEdit() {
   //   axios
   //     .put(`/api/questions/${question.id}`, question)
   //     .then((response) => {
-    
+
   //     })
   //     .catch((error) => {
   //       console.log('error on PUT: ', error);
@@ -102,57 +124,41 @@ function YourSurveysEdit() {
     console.log('You clicked the add button!');
     console.log('survey_id is:', survey_id);
     dispatch({ type: 'ADD_QUESTION', payload: { survey_id, question } });
-    
+   
     setQuestion('');
+    setOpenQuestion(false);
   };
   //deletes a question
   const handleDeleteClick = (event, id) => {
     console.log('You clicked the delete button! Here is that id', id);
     dispatch({ type: 'DELETE_QUESTION', payload: id });
-   
   };
-//back button
-     const handleBackClick = () => {
-       console.log('You clicked the back button!');
-       history.push('/your-surveys');
-     };
+  //back button
+  const handleBackClick = () => {
+    console.log('You clicked the back button!');
+    history.push('/your-surveys');
+  };
   return (
-    <>
-      {/* <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Questions</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Delete</TableCell>
-             
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer> */}
-
-      <div>
-        <div className="container">
-          <p>Edit Your Survey</p>
-        </div>
-        {/* Back button */}
-        <Stack direction="row" spacing={2}>
+    <div>
+      <div className="container">
+        <p>Edit Your Survey</p>
+      </div>
+      <Box
+        sx={{
+          // '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
+          '& button': {
+            width: 'auto',
+            height: 'auto',
+            backgroundColor: '#FCCD04',
+            borderRadius: 1,
+            color: 'black',
+          },
+          '& button: hover': {
+            backgroundColor: '#fdd835',
+          },
+        }}
+      >
+        <Stack direction="row" spacing={1}>
           <Button
             onClick={() => handleBackClick()}
             variant="contained"
@@ -161,35 +167,41 @@ function YourSurveysEdit() {
             Back
           </Button>
         </Stack>
-        {/* Edit the name of the survey */}
+      </Box>
 
-        <form onSubmit={handleSubmitName}>
+      
+      <Dialog open={openName} onClose={handleNameClose}>
+        <DialogTitle className="tableHeader">Update Title</DialogTitle>
+        <DialogContent className="tableItems">
+          <DialogContentText>Update the Name of Your Survey</DialogContentText>
           <TextField
+            autoFocus
+            margin="dense"
             id="filled-basic"
-            required
             color="primary"
             label="Title"
             variant="filled"
             onChange={(event) => handleChange(event, 'survey_name')}
             placeholder="Survey Name"
             value={editSurveyName.survey_name}
+            fullWidth
           />
+        </DialogContent>
 
-          <Button
-            type="submit"
-            size="small"
-            className="centerContainer"
-            variant="contained"
-          >
-            Update Name
-          </Button>
-        </form>
-        {/* New question button/form */}
-        <div>Add a new question!</div>
-        <form onSubmit={handleAddClick}>
+        <DialogActions className="tableItems">
+          <Button onClick={handleNameClose}>Cancel</Button>
+          <Button onClick={handleSubmitName}>Update</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={openQuestion} onClose={handleQuestionClose}>
+        <DialogTitle className="tableHeader">New Question</DialogTitle>
+        <DialogContent className="tableItems">
+          <DialogContentText>Add a question!</DialogContentText>
           <TextField
+            autoFocus
+            margin="dense"
             id="filled-basic"
-            required
             color="primary"
             label="Your Question"
             variant="filled"
@@ -197,19 +209,260 @@ function YourSurveysEdit() {
             placeholder="Type your question"
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
+            fullWidth
           />
+        </DialogContent>
+        <DialogActions className="tableItems">
+          <Button onClick={handleQuestionClose}>Cancel</Button>
+          <Button onClick={handleAddClick}>Add</Button>
+        </DialogActions>
+      </Dialog>
 
-          <Button type="submit" variant="contained">
-            Add
-          </Button>
-        </form>
+      {/* Edit the name of the survey */}
+      {/* <Box
+        component="form"
+        onSubmit={handleSubmitName}
+        className="centerContainer"
+        sx={{
+          display: 'flex',
 
-        <h3>{editSurveyName.survey_name}</h3>
+          '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
+          '& button': {
+            m: 1,
+            padding: 1,
+            width: 'auto',
+            height: 'auto',
+            backgroundColor: '#FCCD04',
+            borderRadius: 1,
+            color: 'black',
+          },
+          '& button: hover': {
+            backgroundColor: '#fdd835',
+          },
+        }}
+        autoComplete="off"
+      >
+        <Card
+          className="tableItems"
+          sx={{
+            minWidth: 250,
+            backgroundColor: '#FCCD04',
+            '& > :not(style)': { width: 'auto', height: 'auto' },
+            '& button': {
+              width: 'auto',
+              height: 'auto',
+              backgroundColor: '#FCCD04',
+            },
+            '& button: hover': {
+              backgroundColor: '#fdd835',
+            },
+          }}
+        >
+          <CardContent className="tableItems">
+            {' '}
+            <TextField
+              id="filled-basic"
+              color="primary"
+              label="Title"
+              variant="filled"
+              onChange={(event) => handleChange(event, 'survey_name')}
+              placeholder="Survey Name"
+              value={editSurveyName.survey_name}
+            />{' '}
+            <Button
+              type="submit"
+              size="small"
+              className="centerContainer"
+              variant="contained"
+            >
+              Update Name
+            </Button>
+          </CardContent>
+        </Card>
+      </Box> */}
 
-        {/* map through all the questions linked to this survey so that you can edit */}
-        <div>
-          {questions.map((question) => (
-            <div key={question.id} xs={2}>
+      {/* New question button/form */}
+
+      <Box
+        component="form"
+        onSubmit={handleAddClick}
+        className="centerContainer"
+        sx={{
+          display: 'flex',
+
+          '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
+          '& button': {
+            m: 1,
+            padding: 1,
+            width: 'auto',
+            height: 'auto',
+            backgroundColor: '#FCCD04',
+            borderRadius: 1,
+            color: 'black',
+          },
+          '& button: hover': {
+            backgroundColor: '#fdd835',
+          },
+        }}
+        autoComplete="off"
+      >
+        <Card
+          className="tableItems"
+          sx={{
+            minWidth: 250,
+            backgroundColor: '#FCCD04',
+            '& > :not(style)': { width: 'auto', height: 'auto' },
+            '& button': {
+              width: 'auto',
+              height: 'auto',
+              backgroundColor: '#FCCD04',
+            },
+            '& button: hover': {
+              backgroundColor: '#fdd835',
+            },
+          }}
+        >
+          <CardContent className="tableItems">
+            {' '}
+            <div>{editSurveyName.survey_name}</div>
+            <Stack direction="row" spacing={3}>
+              <Button
+                size="small"
+                className="centerContainer"
+                variant="contained"
+                onClick={handleNameOpen}
+              >
+                Edit Title
+              </Button>
+              <Button
+                size="small"
+                className="centerContainer"
+                variant="contained"
+                onClick={handleQuestionOpen}
+              >
+                Add Question
+              </Button>
+              <Button
+                variant="contained"
+                onClick={(event) => handleUpdateAll(event)}
+              >
+                Save all edits
+              </Button>
+            </Stack>
+          </CardContent>
+        </Card>
+      </Box>
+
+      {/* map through all the questions linked to this survey so that you can edit */}
+      <div>
+        <TableContainer sx={{ width: 700, margin: 'auto' }} component={Paper}>
+          <Table sx={{ minWidth: 200 }} aria-label="simple table">
+            <TableHead className="tableHeader">
+              <TableRow>
+                <TableCell align="center">
+                  <Typography component="h3">Question </Typography>
+                </TableCell>
+                <TableCell align="center">
+                  {' '}
+                  <Typography component="h3">Edit</Typography>
+                </TableCell>
+                <TableCell>
+                  {' '}
+                  <Typography component="h3">Delete Question</Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+
+            {questions.map((question) => (
+              <TableBody key={question.id} className="tableBody">
+                <TableRow
+                  sx={{
+                    '&:last-child td &:last-child th': {
+                      border: 1,
+                      textAlign: 'center',
+                    },
+
+                    '& button': {
+                      m: 1,
+                      padding: 1,
+                      backgroundColor: '#FCCD04',
+                      borderRadius: 1,
+                      color: 'black',
+                    },
+                    '& button: hover': {
+                      backgroundColor: '#e0b804',
+                    },
+                  }}
+                >
+                  <TableCell component="th" scope="row">
+                    <Card
+                      sx={{
+                        textAlign: 'center',
+                        display: 'flex-box',
+                        alignContent: 'center',
+                        margin: 'auto',
+                        maxHeight: 200,
+                        maxWidth: 200,
+                        minWidth: 200,
+                      }}
+                    >
+                      <div>
+                        <CardContent className="tableItems">
+                          <Typography variant="body1" gutterBottom>
+                            {question.question}
+                          </Typography>
+                        </CardContent>
+                      </div>
+                    </Card>
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    <Card
+                      sx={{
+                        textAlign: 'center',
+                        display: 'flex-box',
+                        alignContent: 'center',
+                        margin: 'auto',
+                        maxHeight: 80,
+                        maxWidth: 250,
+                      }}
+                    >
+                      <div>
+                        <CardContent className="tableItems">
+                          <TextField
+                            id="filled-basic"
+                            color="primary"
+                            label="Question"
+                            variant="filled"
+                            type="text"
+                            onChange={(event) =>
+                              handleQuestionsChange(event, question.id)
+                            }
+                            placeholder="Question"
+                            value={question.question}
+                          />
+                        </CardContent>
+                      </div>
+                    </Card>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Stack direction="row" spacing={1}>
+                      <Button
+                        size="small"
+                        className="centerContainer"
+                        onClick={() => handleDeleteClick(event, question.id)}
+                        variant="contained"
+                        endIcon={<DeleteIcon />}
+                      >
+                        <Typography variant="body1">Delete</Typography>
+                      </Button>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            ))}
+          </Table>
+        </TableContainer>
+        {/*          
               <h3> {question.question}</h3>
 
               <TextField
@@ -222,26 +475,20 @@ function YourSurveysEdit() {
                 onChange={(event) => handleQuestionsChange(event, question.id)}
                 placeholder="Question"
                 value={question.question}
-              />
+              /> */}
 
-              {/* <input type="submit" value="Update Question" /> */}
+        {/* <input type="submit" value="Update Question" /> */}
 
-              <Button
+        {/* <Button
                 className="centerContainer"
                 onClick={() => handleDeleteClick(event, question.id)}
                 variant="contained"
                 startIcon={<DeleteIcon />}
               >
                 Delete
-              </Button>
-            </div>
-          ))}
-        </div>
-        <Button variant="contained" onClick={(event) => handleUpdateAll(event)}>
-          Save all edits
-        </Button>
+              </Button> */}
       </div>
-    </>
+    </div>
   );
 }
 

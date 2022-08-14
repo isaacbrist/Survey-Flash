@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Card from '@mui/material/Card';
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -16,22 +16,38 @@ function About() {
           <li>HTML</li>
           <li>CSS</li>
           <li>SQL</li>
+          <li>Node.JS</li>
+          <li>Express</li>
           <li>React</li>
           <li>Redux</li>
-          <li>Node.JS</li>
           <li>Material UI</li>
           <li>goQR.me-QR Code API</li>
         </ul>
         <div>
-          <h5>Challenges</h5>
-          <p>
-            There were a few challenges I stumbled across while creating this
-            app. I struggled with getting the QR Code API to work. There were
-            also some challenges with implementing Material UI.
-          </p>
+          <h3>Challenges</h3>
+          <ul>
+            <li>QR Code API</li>
+            <li>Material UI</li>
+          </ul>
         </div>
         <div>
-          <h5>Thank you</h5>
+          <h3>Future of this App</h3>
+          <ul>
+            <li>
+              Option to add in different types of questions (Multiple Choice,
+              true false, etc.)
+            </li>
+            <li>
+              Additional data recieved when viewing responses (Date
+              administered, date responded){' '}
+            </li>
+            <li>Implementation of Graphs</li>
+
+            <li>Prebuilt survey templates with question examples</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Thank you</h3>
           <ul>
             <li>My Instructor, Liz</li>
             <li>The Jemisin Cohort</li>
@@ -39,6 +55,11 @@ function About() {
             <li>My kiddos</li>
           </ul>
         </div>
+        <Card>
+          <div>
+            <img src="/images/File.jpg" />
+          </div>
+        </Card>
       </div>
     </div>
   );

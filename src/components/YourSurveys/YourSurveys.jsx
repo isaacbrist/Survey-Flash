@@ -32,7 +32,7 @@ function YourSurveys() {
   const history = useHistory();
   const surveys = useSelector((store) => store.surveys);
   const [survey_name, set_survey_name] = useState('');
-//buttons not rendering because of this dispatch?
+  //buttons not rendering because of this dispatch?
   useEffect(() => {
     console.log('Getting all surveys', user_id);
     dispatch({ type: 'FETCH_SURVEYS', payload: user_id });
@@ -41,7 +41,7 @@ function YourSurveys() {
   const handleAddClick = () => {
     console.log('You clicked the add button!');
     dispatch({ type: 'ADD_SURVEY', payload: { user_id, survey_name } });
-  
+
     set_survey_name('');
   };
 
@@ -57,10 +57,10 @@ function YourSurveys() {
       <Box
         component="form"
         onSubmit={handleAddClick}
-        className='centerContainer'
+        className="centerContainer"
         sx={{
-         display: 'flex',
-    
+          display: 'flex',
+
           '& > :not(style)': { m: 1, width: '20ch', height: '7ch' },
           '& button': {
             m: 1,
@@ -68,6 +68,7 @@ function YourSurveys() {
             width: '25px',
             height: '25',
             backgroundColor: '#FCCD04',
+            borderRadius: 1,
           },
           '& button: hover': {
             backgroundColor: '#fdd835',
@@ -81,12 +82,6 @@ function YourSurveys() {
           sx={{
             backgroundColor: '#FCCD04',
             minWidth: 350,
-            //  display: 'flex',
-            // flexDirection: 'column',
-            // alignItems: 'center',
-            //     alignSelf: 'center',
-            //     justifyContent: 'center',
-            //     textAlign: 'center',
 
             '& > :not(style)': { m: 1, width: '25ch', height: '7ch' },
             '& button': {
@@ -97,13 +92,12 @@ function YourSurveys() {
               backgroundColor: '#FCCD04',
             },
             '& button: hover': {
-              backgroundColor: '#fdd835',
+              backgroundColor: '#e0b804',
             },
           }}
         >
           <TextField
             id="filled-basic"
-            required
             color="primary"
             placeholder="Survey Name"
             value={survey_name}
@@ -121,10 +115,9 @@ function YourSurveys() {
             Add
           </Button>
         </Card>
-       
       </Box>
 
-      <TableContainer sx={{ width: 800, margin: 'auto' }} component={Paper}>
+      <TableContainer sx={{ width: 700, margin: 'auto' }} component={Paper}>
         <Table sx={{ minWidth: 200 }} aria-label="simple table">
           <TableHead className="tableHeader">
             <TableRow>
