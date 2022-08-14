@@ -24,7 +24,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import AppBar from '@mui/material/AppBar';
 
+import Toolbar from '@mui/material/Toolbar';
+
+import MenuIcon from '@mui/icons-material/Menu';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import EditIcon from '@mui/icons-material/Edit';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -36,8 +43,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 function YourSurveysEdit() {
   const [openName, setOpenName] = React.useState(false);
   const [openQuestion, setOpenQuestion] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+ 
   const handleNameOpen = () => {
     setOpenName(true);
+    handleClose()
   };
 
   const handleNameClose = () => {
@@ -45,6 +62,7 @@ function YourSurveysEdit() {
   };
   const handleQuestionOpen = () => {
     setOpenQuestion(true);
+    handleClose();
   };
 
   const handleQuestionClose = () => {
@@ -84,8 +102,8 @@ function YourSurveysEdit() {
       type: 'UPDATE_ALL',
       payload: { questions, survey_id },
     });
-    //go back to your surveys
-    history.push('/your-surveys');
+ 
+    handleClose();
   }
 
   // Called when the submit button is pressed
@@ -136,13 +154,123 @@ function YourSurveysEdit() {
   //back button
   const handleBackClick = () => {
     console.log('You clicked the back button!');
+    handleUpdateAll();
     history.push('/your-surveys');
   };
   return (
     <div>
-      <div className="container">
-        <p>Edit Your Survey</p>
-      </div>
+      <Box sx={{ flexGrow: 1, backgroundColor: 'FCCD04' }}>
+        <AppBar position="static" className="tableItems">
+          <Toolbar className="appBar">
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              {editSurveyName.survey_name}
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ m: 'auto' }}
+              >
+                <EditIcon
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                />
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}
+                >
+                  <MenuItem onClick={handleNameOpen}> Edit Title</MenuItem>
+                  <MenuItem onClick={handleQuestionOpen}>
+                    {' '}
+                    Add Question
+                  </MenuItem>
+                  <MenuItem onClick={(event) => handleUpdateAll(event)}>
+                    {' '}
+                    Save all edits
+                  </MenuItem>
+                </Menu>
+              </IconButton>
+            </Typography>
+
+            {/* <Box
+              component="form"
+              onSubmit={handleAddClick}
+              className="centerContainer"
+              sx={{
+                display: 'flex',
+
+                '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
+                '& button': {
+                  m: 1,
+                  padding: 1,
+                  width: 'auto',
+                  height: 'auto',
+                  backgroundColor: '#FCCD04',
+                  borderRadius: 1,
+                  color: 'black',
+                },
+                '& button: hover': {
+                  backgroundColor: '#fdd835',
+                },
+              }}
+              autoComplete="off"
+            >
+              <Card
+                className="tableItems"
+                sx={{
+                  minWidth: 250,
+                  backgroundColor: '#FCCD04',
+                  '& > :not(style)': { width: 'auto', height: 'auto' },
+                  '& button': {
+                    width: 'auto',
+                    height: 'auto',
+                    backgroundColor: '#FCCD04',
+                  },
+                  '& button: hover': {
+                    backgroundColor: '#fdd835',
+                  },
+                }}
+              >
+                <CardContent className="tableItems">
+                  {' '}
+                  <Stack direction="row" spacing={3}>
+                    <Button
+                      size="small"
+                      className="centerContainer"
+                      variant="contained"
+                      onClick={handleNameOpen}
+                    >
+                      Edit Title
+                    </Button>
+                    <Button
+                      size="small"
+                      className="centerContainer"
+                      variant="contained"
+                      onClick={handleQuestionOpen}
+                    >
+                      Add Question
+                    </Button>
+                    <Button
+                      variant="contained"
+                      onClick={(event) => handleUpdateAll(event)}
+                    >
+                      Save all edits
+                    </Button>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Box> */}
+          </Toolbar>
+        </AppBar>
+      </Box>
       <Box
         sx={{
           // '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
@@ -169,7 +297,6 @@ function YourSurveysEdit() {
         </Stack>
       </Box>
 
-      
       <Dialog open={openName} onClose={handleNameClose}>
         <DialogTitle className="tableHeader">Update Title</DialogTitle>
         <DialogContent className="tableItems">
@@ -282,76 +409,6 @@ function YourSurveysEdit() {
       </Box> */}
 
       {/* New question button/form */}
-
-      <Box
-        component="form"
-        onSubmit={handleAddClick}
-        className="centerContainer"
-        sx={{
-          display: 'flex',
-
-          '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
-          '& button': {
-            m: 1,
-            padding: 1,
-            width: 'auto',
-            height: 'auto',
-            backgroundColor: '#FCCD04',
-            borderRadius: 1,
-            color: 'black',
-          },
-          '& button: hover': {
-            backgroundColor: '#fdd835',
-          },
-        }}
-        autoComplete="off"
-      >
-        <Card
-          className="tableItems"
-          sx={{
-            minWidth: 250,
-            backgroundColor: '#FCCD04',
-            '& > :not(style)': { width: 'auto', height: 'auto' },
-            '& button': {
-              width: 'auto',
-              height: 'auto',
-              backgroundColor: '#FCCD04',
-            },
-            '& button: hover': {
-              backgroundColor: '#fdd835',
-            },
-          }}
-        >
-          <CardContent className="tableItems">
-            {' '}
-            <div>{editSurveyName.survey_name}</div>
-            <Stack direction="row" spacing={3}>
-              <Button
-                size="small"
-                className="centerContainer"
-                variant="contained"
-                onClick={handleNameOpen}
-              >
-                Edit Title
-              </Button>
-              <Button
-                size="small"
-                className="centerContainer"
-                variant="contained"
-                onClick={handleQuestionOpen}
-              >
-                Add Question
-              </Button>
-              <Button
-                variant="contained"
-                onClick={(event) => handleUpdateAll(event)}
-              >
-                Save all edits
-              </Button>
-            </Stack>
-          </CardContent>
-        </Card>
-      </Box>
 
       {/* map through all the questions linked to this survey so that you can edit */}
       <div>

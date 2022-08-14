@@ -3,7 +3,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   /* margin: 0 0 30px; */
   /* background-color: #ffd700; */
   background-color: #FCCD04;
@@ -17,14 +16,14 @@
 .nav-title {
   font-size: 24px;
   font-weight: 700;
-  color: #f2f2f2;
+  color: black;
   padding-left: 10px;
   margin: 0;
 }
 
 .navLink {
   display: inline-block;
-  color: #f2f2f2;
+  color: black;
   background-color: #FCCD04;
   text-align: center;
   padding: 24px 10px;

@@ -50,7 +50,7 @@ function YourSurveys() {
     // color="primary">
     <div>
       <div className="container">
-        <p>Here are all of Your Surveys!</p>
+        <p>Your Surveys!</p>
       </div>
 
       <h3 className="centerContainer">Add a new survey!</h3>

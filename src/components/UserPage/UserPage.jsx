@@ -4,6 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -75,16 +76,30 @@ function UserPage() {
     <div className="container">
       <div>
         <h2>Welcome, {user.username}!</h2>
-      
-          <Card className="aboutContainer">
-            <div className="centerContainer">
-              <Typography gutterBottom variant="h5" component="h5">
-                Click on the Your Surveys Button at the top right to get
-                started!
-              </Typography>
-            </div>
+        <Box
+          component="div"
+          className="centerContainer"
+          sx={{
+            '& > :not(style)': {
+              display: 'flex',
+              p: 2,
+              width: '200px',
+              height: '200px',
+            },
+          }}
+        >
+          <Card
+            className="centerContainer"
+            sx={{
+              backgroundColor: '#FCCD04',
+              minWidth: 200,
+            }}
+          >
+            <Typography gutterBottom variant="h6" component="h6">
+              Click on the Your Surveys at the top right to get started!
+            </Typography>
           </Card>
-      
+        </Box>
       </div>
 
       <LogOutButton className="btn" />
