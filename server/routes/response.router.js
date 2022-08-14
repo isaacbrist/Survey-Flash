@@ -4,13 +4,16 @@ const router = express.Router();
 const axios = require('axios');
 
 // 3rd party API call in order to generate a QR code to bring a respondent to the survey url
-router.get('/:id/qrCode', async (req, res) => {
-
+router.get('/get/:id/qrCode', async (req, res) => {
+const connection = await pool.connect();
+//  try {
+//     // Start my connection 
+//     await connection.query('BEGIN');
     axios({
       method: 'GET',
       url: 'https://api.qrserver.com/v1/create-qr-code/',
       params: {
-        data: `https://frozen-sands-52026.herokuapp.com/#/respondent-survey/${req.params.id}`,
+        data: `https://survey-flash.herokuapp.com/#/respondent-survey/${req.params.id}`,
       },
     })
       .then((apiRes) => {

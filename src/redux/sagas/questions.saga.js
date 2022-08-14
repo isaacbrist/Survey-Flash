@@ -33,6 +33,7 @@ function* postQuestions(action) {
   try {
     console.log('Here is the postquestions action.payload', action.payload);
     const response = yield axios.post('/api/questions', action.payload);
+           yield put({ type: 'FETCH_QUESTIONS', payload: response.data.survey_id});
   } catch (error) {
     console.log('Post this question error: error in questions saga', error);
   }
@@ -46,6 +47,7 @@ function* deleteQuestion(action) {
       'Delete this question, here is the response.data:',
       response.data
     );
+           yield put({ type: 'FETCH_QUESTIONS', payload: response.data.survey_id});
   } catch (error) {
     console.log('Delete this question error: error in question saga', error);
   }

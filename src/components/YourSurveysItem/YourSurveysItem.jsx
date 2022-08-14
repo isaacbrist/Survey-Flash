@@ -49,7 +49,7 @@ function YourSurveysItem(props) {
       props.survey.id
     );
     dispatch({ type: 'DELETE_SURVEY', payload: props.survey.id });
-    dispatch({ type: 'FETCH_SURVEYS', payload: props.survey.user_id });
+   
   };
 
   //this button will have to dispatch the id of the asurvey to a new reducer to keep the id temporarily so that the 
@@ -66,13 +66,20 @@ function YourSurveysItem(props) {
   return (
     <TableRow
       sx={{
-        '&:last-child td &:last-child th': { border: 0 },
-        
-        '& button': { m: 1, padding: 1 },
+        '&:last-child td &:last-child th': { border: 1 },
+
+        '& button': { m: 1, padding: 1, backgroundColor: '#FCCD04' },
+        '& button: hover': {
+          backgroundColor: '#fdd835',
+        },
       }}
     >
       <TableCell component="th" scope="row">
-        <Card>
+        <Card
+          sx={{
+            backgroundColor: '#FCCD04',
+          }}
+        >
           <div>
             <CardActionArea onClick={() => handleEditClick(event)}>
               <CardContent>
@@ -87,6 +94,7 @@ function YourSurveysItem(props) {
       <TableCell align="right">
         <Stack direction="row" spacing={1}>
           <Button
+            color="primary"
             className="centerContainer"
             onClick={() => handleStartClick(event)}
             variant="contained"
@@ -100,6 +108,7 @@ function YourSurveysItem(props) {
       <TableCell align="right">
         <Stack direction="row" spacing={1}>
           <Button
+            color="error"
             size="small"
             onClick={() => handleDeleteClick(event)}
             variant="contained"

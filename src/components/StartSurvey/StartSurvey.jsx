@@ -40,7 +40,7 @@ function StartSurvey() {
   // this will set the qr code to bring others to the beginning of the rating pages for this specific wine
   const setQR = () => {
     axios
-      .get(`/api/response/${activeSurveyId}/qrCode`)
+      .get(`/api/response/get/${activeSurveyId}/qrCode`)
       .then((response) => {
         setQrCode(response.data.qrCode);
       })

@@ -8,7 +8,7 @@ import React from 'react';
 function About() {
   return (
     <div>
-      <h2 className="container">About Survey Flash</h2>
+      <p className="container">About Survey Flash</p>
       <div className="aboutContainer">
         <h3>Technologies Used</h3>
         <ul>
