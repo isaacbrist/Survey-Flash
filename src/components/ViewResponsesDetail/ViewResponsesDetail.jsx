@@ -15,6 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -37,15 +38,32 @@ function ViewResponsesDetail() {
         <p>View Your Responses</p>
       </div>
       {/* Back button */}
-      <Stack direction="row" spacing={2}>
-        <Button
-          onClick={() => handleBackClick()}
-          variant="contained"
-          startIcon={<ArrowBackIcon />}
-        >
-          Back
-        </Button>
-      </Stack>
+      <Box
+        sx={{
+          // '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
+          '& button': {
+            width: 'auto',
+            height: 'auto',
+            backgroundColor: '#FCCD04',
+            borderRadius: 1,
+            color: 'black',
+          },
+          '& button: hover': {
+            backgroundColor: '#fdd835',
+          },
+        }}
+      >
+        <Stack direction="row" spacing={1}>
+          <Button
+            onClick={() => handleBackClick()}
+            variant="contained"
+            startIcon={<ArrowBackIcon />}
+          >
+            Back
+          </Button>
+        </Stack>
+      </Box>
+
       <TableContainer sx={{ width: 800, margin: 'auto' }} component={Paper}>
         <Table sx={{ minWidth: 200 }} aria-label="simple table">
           <TableHead className="tableHeader">

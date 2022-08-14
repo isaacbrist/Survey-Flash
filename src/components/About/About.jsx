@@ -44,6 +44,7 @@ function About() {
             <li>Implementation of Graphs</li>
 
             <li>Prebuilt survey templates with question examples</li>
+            <li>Option to change color palette/theme</li>
           </ul>
         </div>
         <div>

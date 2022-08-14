@@ -9,6 +9,13 @@
 margin: auto;
 
 }
+.appBar {
+    background-color: #90CCF0;
+
+    text-align: center;
+  
+
+}
 .centerContainer{
     align-items: center;
         align-self: center;
@@ -16,6 +23,14 @@ margin: auto;
         text-align: center;
         margin: auto;
         margin-top: 15px;
+}
+.centerContainer2 {
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+  
 }
 .tableHeader{
     background-color: #FCCD04;

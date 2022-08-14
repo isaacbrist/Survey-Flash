@@ -11,7 +11,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 import SendIcon from '@mui/icons-material/Send';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 //Page to display the QR code for survey takers to use to start the survey.
@@ -50,7 +51,7 @@ function StartSurvey() {
   };
 
   return (
-    <div className="centerContainer">
+    <div className="centerContainer2">
       <div className="container">
         <p>Start the Survey!</p>
       </div>
@@ -64,15 +65,39 @@ function StartSurvey() {
         </Button>
       </Stack>
       <div>
+        {' '}
+        <Box
+          component="div"
+        
+          className="centerContainer"
+          sx={{
+      
+
+            '& > :not(style)': { display: 'flex', p:2, width: '300px', height: '300px' },
+           
+          }}
+     
+        >
+          <Card
+            className="centerContainer"
+            sx={{
+              backgroundColor: '#FCCD04',
+              minWidth: 200,
+
+              
+            }}
+          >
+         
+              <img src={qrCode} />
+         
+          </Card>
+        </Box>
         {/* /respondent-survey/{activeSurveyId} */}
         {/* <img
           src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com?/#/respondent-survey35&amp;size=100x100"
           className="qrCode"
         /> */}
         {/* <Button onClick={setQR()}>Get QR Code</Button> */}
-        <div>
-          <img src={qrCode} />
-        </div>
         <Button
           onClick={() => handleStartClick()}
           variant="contained"

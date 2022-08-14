@@ -22,32 +22,13 @@ function RespondentCompletion() {
     // };
 
   return (
-    <div className='centerContainer'>
-      {/* <Stack direction="row" spacing={2}>
-        <Button
-          onClick={() => handleBackClick()}
-          variant="contained"
-          startIcon={<ArrowBackIcon />}
-        >
-          Back
-        </Button>
-      </Stack> */}
-      <div>
-        <h2>Thank you for completing the survey in a flash!</h2>
+  
+   
+      <div className='container'>
+        <h2>Thank you for completing the survey, quick as a flash!</h2>
       </div>
-      <div>
-      
-        {/* <Stack direction="row" spacing={2}>
-          <Button
-            onClick={() => handleTemporaryClick()}
-            variant="contained"
-            endIcon={<SendIcon />}
-          >
-            Temporary Button
-          </Button>
-        </Stack> */}
-      </div>
-    </div>
+    
+   
   );
 }
 

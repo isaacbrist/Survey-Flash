@@ -9,6 +9,17 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
+import Typography from '@mui/material/Typography';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import SaveIcon from '@mui/icons-material/Save';
 //Here is where the respondent responds to questions
 
 function RespondentSurvey() {
@@ -55,14 +66,16 @@ function RespondentSurvey() {
   }
 
   return (
-    <div className='centerContainer'>
+    <div className="centerContainer2">
       <div className="container">
-        <p>Survey Flash</p>
+        <p>
+          Don't forget to fill out your name. Click the save button after every
+          answer!
+        </p>
       </div>
 
       {/* <h2>Name of the user who sent the survey</h2> */}
       {/* <h3> {activeSurvey.survey_name}</h3> */}
-
       <Box
         component="form"
         sx={{
@@ -82,64 +95,148 @@ function RespondentSurvey() {
           variant="filled"
         />
       </Box>
-      {/* map through all the questions linked to this survey */}
-      <div >
-        {questions?.map((question) => (
-          <div className="centerContainer" item key={question.id} xs={2}>
-            <h5>{question.question}</h5>
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '25ch', height: '7ch' },
-              }}
-              validate
-              type="submit"
-              autoComplete="off"
-            >
-              {/* Text Field */}
-              <TextField
-                id="filled-basic"
-                required
-                placeholder="Response"
-                
-                onChange={(event) => setResponse(event.target.value)}
-                label="Question"
-                variant="filled"
-                value={question.response}
-              />
-              <Button
-             
-                variant="contained"
-                size="small"
-                onClick={(event) =>
-                  handleAnswers(
-                    event,
-                    question.id,
-                    question.survey_id,
-                    question.question
-                  )
-                }
-                type="submit"
-                button="true"
-                endIcon={<SendIcon />}
+      <TableContainer sx={{ width: 700, margin: 'auto' }} component={Paper}>
+        <Table sx={{ minWidth: 200 }} aria-label="simple table">
+          <TableHead className="tableHeader">
+            <TableRow>
+              <TableCell align="center">
+                <Typography component="h3">Question </Typography>
+              </TableCell>
+              <TableCell align="center">
+                {' '}
+                <Typography component="h3">Your Answer</Typography>
+              </TableCell>
+              <TableCell>
+                {' '}
+                <Typography component="h3">Save</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          {/* map through all the questions linked to this survey */}
+          {questions.map((question) => (
+            <TableBody key={question.id} className="tableBody">
+              <TableRow
+                sx={{
+                  '&:last-child td &:last-child th': {
+                    border: 1,
+                    textAlign: 'center',
+                  },
+
+                  '& button': {
+                    m: 1,
+                    padding: 1,
+                    backgroundColor: '#FCCD04',
+                    borderRadius: 1,
+                    color: 'black',
+                  },
+                  '& button: hover': {
+                    backgroundColor: '#e0b804',
+                  },
+                }}
               >
-                Save
-              </Button>
-            </Box>
-            {/* <input type="submit" value="Update Question" /> */}
-          </div>
-        ))}
-        <Button
-          variant="contained"
-          size="large"
-          onClick={handleSubmit}
-          type="submit"
-          button="true"
-          endIcon={<SendIcon />}
-        >
-          Submit
-        </Button>
-      </div>
+                <TableCell component="th" scope="row">
+                  <Card
+                    sx={{
+                      textAlign: 'center',
+                      display: 'flex-box',
+                      alignContent: 'center',
+                      margin: 'auto',
+                      maxHeight: 200,
+                      maxWidth: 200,
+                      minWidth: 200,
+                    }}
+                  >
+                    <div>
+                      <CardContent className="tableItems">
+                        <Typography variant="body1" gutterBottom>
+                          {question.question}
+                        </Typography>
+                      </CardContent>
+                    </div>
+                  </Card>
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <Card
+                    sx={{
+                      textAlign: 'center',
+                      display: 'flex-box',
+                      alignContent: 'center',
+                      margin: 'auto',
+                      maxHeight: 80,
+                      maxWidth: 250,
+                    }}
+                  >
+                    <div>
+                      <CardContent className="tableItems">
+                        <TextField
+                          id="filled-basic"
+                          required
+                          placeholder="Your Response"
+                          onChange={(event) => setResponse(event.target.value)}
+                          label="Answer"
+                          variant="filled"
+                          value={question.response}
+                        />
+                      </CardContent>
+                    </div>
+                  </Card>
+                </TableCell>
+                <TableCell align="right">
+                  <Stack direction="row" spacing={1}>
+                    <Button
+                      variant="contained"
+                      size="large"
+                      onClick={(event) =>
+                        handleAnswers(
+                          event,
+                          question.id,
+                          question.survey_id,
+                          question.question
+                        )
+                      }
+                      type="submit"
+                      button="true"
+                      endIcon={<SaveIcon />}
+                    >
+                      Save
+                    </Button>
+                  </Stack>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          ))}
+        </Table>
+      </TableContainer>
+
+      {/* <input type="submit" value="Update Question" /> */}
+      <Box className='centerContainer'
+        sx={{display: 'flex',
+     
+          '& button': {
+            width: 'auto',
+            height: 'auto',
+            backgroundColor: '#FCCD04',
+            borderRadius: 1,
+            color: 'black',
+          },
+          '& button: hover': {
+            backgroundColor: '#fdd835',
+          },
+        }}
+      >
+        <Stack direction="row" spacing={1}>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={handleSubmit}
+            type="submit"
+            button="true"
+            endIcon={<SendIcon />}
+          >
+            Submit
+          </Button>
+        </Stack>
+      </Box>
     </div>
   );
 }
