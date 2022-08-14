@@ -101,9 +101,11 @@ function RespondentSurvey() {
                 id="filled-basic"
                 required
                 placeholder="Response"
+                
                 onChange={(event) => setResponse(event.target.value)}
                 label="Question"
                 variant="filled"
+                value={question.response}
               />
               <Button
              

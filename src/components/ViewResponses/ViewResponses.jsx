@@ -33,25 +33,23 @@ function ViewResponses() {
       <div className="container">
         <p>View responses</p>
       </div>
-      <TableContainer sx={{ width: 800, margin: 'auto' }} component={Paper}>
+      <TableContainer sx={{ width: 700, margin: 'auto', mt: 1 }} component={Paper}>
         <Table sx={{ minWidth: 200 }} aria-label="simple table">
-          <TableHead>
+          <TableHead className="tableHeader">
             <TableRow>
               <TableCell align="center">
                 <Typography component="h3">Title </Typography>
               </TableCell>
-              
             </TableRow>
           </TableHead>
 
           {surveys?.map((survey) => (
-            <TableBody key={survey.id}>
-              <ViewResponsesItem survey={survey} />
+            <TableBody key={survey.id} className="tableBody">
+              <ViewResponsesItem survey={survey}/>
             </TableBody>
           ))}
         </Table>
       </TableContainer>
-     
     </>
   );
 }

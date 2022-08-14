@@ -34,7 +34,7 @@ function ViewResponsesDetail() {
   return (
     <div>
       <div className="container">
-        <p>View Your Responses to </p>
+        <p>View Your Responses</p>
       </div>
       {/* Back button */}
       <Stack direction="row" spacing={2}>
@@ -48,7 +48,7 @@ function ViewResponsesDetail() {
       </Stack>
       <TableContainer sx={{ width: 800, margin: 'auto' }} component={Paper}>
         <Table sx={{ minWidth: 200 }} aria-label="simple table">
-          <TableHead>
+          <TableHead className="tableHeader">
             <TableRow>
               <TableCell>
                 <Typography component="h3">Name </Typography>
@@ -62,25 +62,36 @@ function ViewResponsesDetail() {
             </TableRow>
           </TableHead>
           {/* map through all the questions and responses linked to this survey */}
-          <TableBody>
+          <TableBody className="tableBody">
             {responses?.map((response) => (
               <TableRow
                 sx={{
                   '&: &:last-child th': { border: 1, textAlign: 'center' },
                   '& button': { m: 1, padding: 1 },
                 }}
-                
                 key={response.id}
                 xs={2}
               >
                 <TableCell component="th" scope="row">
-                  <Typography component="h3">{response.name} </Typography>
+                  <Card>
+                    <Typography className="tableItems" component="h3">
+                      {response.name}{' '}
+                    </Typography>
+                  </Card>
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  <Typography component="h3">{response.question} </Typography>
+                  <Card>
+                    <Typography className="tableItems" component="h3">
+                      {response.question}{' '}
+                    </Typography>
+                  </Card>
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  <Typography component="h3">{response.response} </Typography>
+                  <Card>
+                    <Typography className="tableItems" component="h3">
+                      {response.response}{' '}
+                    </Typography>
+                  </Card>
                 </TableCell>
               </TableRow>
             ))}

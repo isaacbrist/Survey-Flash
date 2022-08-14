@@ -36,31 +36,43 @@ function ViewResponsesItem(props) {
     history.push('/view-responses-detail');
   };
   return (
-   
-      <TableRow
-        sx={{
-          '&: &:last-child th': { border: 1, textAlign: 'center' },
-          '& button': { m: 1, padding: 1 },
-        }}
-      >
-        <TableCell component="th" scope="row">
-          <Card>
-            <div>
-              <CardActionArea onClick={() => handleViewClick()}
-                >
-                <CardContent>
-                  <Typography textAlign='center' gutterBottom variant="h5" component="h3">
-                    {props.survey.survey_name}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </div>
-          </Card>
-        </TableCell>
-      
-      </TableRow>
+    <TableRow
+      sx={{
+        '&:last-child td &:last-child th': { border: 1, textAlign: 'center' },
 
-
+        '& button': {
+          m: 0,
+          padding: 1,
+          backgroundColor: '#FCCD04',
+          borderRadius: 1,
+        },
+        '& button: hover': {
+          backgroundColor: '#e0b804',
+        },
+      }}
+    >
+      <TableCell component="th" scope="row">
+        <Card
+          className="tableItems"
+          sx={{
+            backgroundColor: '#FCCD04',
+          }}
+        >
+          <CardActionArea onClick={() => handleViewClick()}>
+            <CardContent>
+              <Typography
+                textAlign="center"
+                gutterBottom
+                variant="h5"
+                component="h3"
+              >
+                {props.survey.survey_name}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </TableCell>
+    </TableRow>
   );
 }
 

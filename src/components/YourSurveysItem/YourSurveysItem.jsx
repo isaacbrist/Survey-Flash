@@ -66,11 +66,11 @@ function YourSurveysItem(props) {
   return (
     <TableRow
       sx={{
-        '&:last-child td &:last-child th': { border: 1 },
+        '&:last-child td &:last-child th': { border: 1, textAlign: 'center' },
 
-        '& button': { m: 1, padding: 1, backgroundColor: '#FCCD04' },
+        '& button': { m: 1, padding: 1, backgroundColor: '#FCCD04', borderRadius: 1 },
         '& button: hover': {
-          backgroundColor: '#fdd835',
+          backgroundColor: '#e0b804',
         },
       }}
     >
