@@ -16,9 +16,9 @@ import SendIcon from '@mui/icons-material/Send';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 //Page to display the QR code for survey takers to use to start the survey.
 function StartSurvey() {
-  useEffect(() => {
-    setQR();
-  }, [activeSurveyId]);
+  // useEffect(() => {
+  //   setQR();
+  // }, [activeSurveyId]);
   let [qrCode, setQrCode] = useState('');
   const history = useHistory();
 
@@ -69,6 +69,7 @@ function StartSurvey() {
           src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com?/#/respondent-survey35&amp;size=100x100"
           className="qrCode"
         /> */}
+        <Button onClick={setQR()}>Get QR Code</Button>
         <div>
           <img src={qrCode} />
         </div>
