@@ -55,18 +55,35 @@ function StartSurvey() {
       <div className="container">
         <p>Start the Survey!</p>
       </div>
-      <Stack direction="row" spacing={2}>
-        <Button
-          onClick={() => handleBackClick()}
-          variant="contained"
-          startIcon={<ArrowBackIcon />}
-        >
-          Back
-        </Button>
-      </Stack>
+      <Box
+        sx={{
+          // '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
+          '& button': {
+            width: 'auto',
+            height: 'auto',
+            backgroundColor: '#FCCD04',
+            borderRadius: 1,
+            color: 'black',
+          },
+          '& button: hover': {
+            backgroundColor: '#fdd835',
+          },
+        }}
+      >
+        <Stack direction="row" spacing={2}>
+          <Button
+            onClick={() => handleBackClick()}
+            variant="contained"
+            startIcon={<ArrowBackIcon />}
+          >
+            Back
+          </Button>
+        </Stack>
+      </Box>
+
       <div>
         {' '}
-        <Box
+        {/* <Box
           component="div"
         
           className="centerContainer"
@@ -91,20 +108,42 @@ function StartSurvey() {
               <img src={qrCode} />
          
           </Card>
-        </Box>
+        </Box> */}
         {/* /respondent-survey/{activeSurveyId} */}
         {/* <img
           src="https://api.qrserver.com/v1/create-qr-code/?data=https://frozen-sands-52026.herokuapp.com?/#/respondent-survey35&amp;size=100x100"
           className="qrCode"
         /> */}
         {/* <Button onClick={setQR()}>Get QR Code</Button> */}
-        <Button
-          onClick={() => handleStartClick()}
-          variant="contained"
-          endIcon={<SendIcon />}
+        <div>
+          <img src={qrCode} />
+        </div>
+        <Box className='centerContainer'
+          sx={{
+            display: 'flex',
+            '& > :not(style)': { m: 1, width: 'auto' },
+            '& button': {
+              width: 'auto',
+              height: 'auto',
+              backgroundColor: '#FCCD04',
+              borderRadius: 1,
+              color: 'black',
+            },
+            '& button: hover': {
+              backgroundColor: '#fdd835',
+            },
+          }}
         >
-          Start Survey
-        </Button>
+          <Stack direction="row" spacing={2}>
+            <Button
+              onClick={() => handleStartClick()}
+              variant="contained"
+              endIcon={<SendIcon />}
+            >
+              Start Survey
+            </Button>
+          </Stack>
+        </Box>
       </div>
     </div>
   );
@@ -112,10 +151,3 @@ function StartSurvey() {
 
 export default StartSurvey;
 
-// let [qrCode, setQrCode] = useState('');
-
-// useEffect(() => {
-//   // this is to fetch wine detail for the id of the url endpoint
-//   setQR();
-//   dispatch({ type: 'FETCH_WINE_DETAIL', payload: id });
-// }, [id]);

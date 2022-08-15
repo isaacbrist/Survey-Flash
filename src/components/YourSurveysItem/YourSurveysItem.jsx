@@ -113,6 +113,7 @@ function YourSurveysItem(props) {
             onClick={() => handleDeleteClick(event)}
             variant="contained"
             endIcon={<DeleteIcon />}
+           
           >
             <Typography variant="body1">Delete</Typography>
           </Button>

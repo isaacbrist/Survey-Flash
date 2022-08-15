@@ -25,7 +25,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AppBar from '@mui/material/AppBar';
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import Toolbar from '@mui/material/Toolbar';
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -69,6 +70,8 @@ function YourSurveysEdit() {
     setOpenQuestion(false);
   };
 
+
+  
   // useEffect(() => {
   //   console.log('Getting all questions');
   //   dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
@@ -123,20 +126,6 @@ function YourSurveysEdit() {
     setOpenName(false);
   }
 
-  // function handleSubmitQuestion(event, question) {
-  //   event.preventDefault();
-  //   console.log('You clicked the submit question button');
-  //   console.log('Here is the question', question);
-  //   // PUT REQUEST to /questions/:id
-  //   axios
-  //     .put(`/api/questions/${question.id}`, question)
-  //     .then((response) => {
-
-  //     })
-  //     .catch((error) => {
-  //       console.log('error on PUT: ', error);
-  //     });
-  // }
   //Adds a new question
   const handleAddClick = () => {
     console.log('You clicked the add button!');
