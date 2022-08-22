@@ -71,7 +71,25 @@ function YourSurveysEdit() {
   };
 
 
-  
+
+// const Alert = React.forwardRef(function Alert(props, ref) {
+//   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });
+
+
+//   const [openSnack, setOpenSnack] = React.useState(false);
+
+//   const handleSnackClick = () => {
+//     setOpenSnack(true);
+//   };
+
+//   const handleSnackClose = (event, reason) => {
+//     if (reason === 'clickaway') {
+//       return;
+//     }
+
+//     setOpenSnack(false);
+//   };
   // useEffect(() => {
   //   console.log('Getting all questions');
   //   dispatch({ type: 'FETCH_QUESTIONS', payload: survey_id });
@@ -124,6 +142,8 @@ function YourSurveysEdit() {
         console.log('error on PUT: ', error);
       });
     setOpenName(false);
+        swal('Name has been updated!', 'Your changes have been saved', 'success');
+    // handleSnackClick;
   }
 
   //Adds a new question
@@ -306,7 +326,18 @@ function YourSurveysEdit() {
 
         <DialogActions className="tableItems">
           <Button onClick={handleNameClose}>Cancel</Button>
-          <Button onClick={handleSubmitName}>Update</Button>
+          <Button onClick={handleSubmitName} >Update</Button>
+         
+            {/* <Snackbar openSnack={openSnack} autoHideDuration={6000} onClose={handleSnackClose}>
+              <Alert
+                onClose={handleSnackClose}
+                severity="success"
+                sx={{ width: '100%' }}
+              >
+                This is a success message!
+              </Alert>
+            </Snackbar>
+           */}
         </DialogActions>
       </Dialog>
 
