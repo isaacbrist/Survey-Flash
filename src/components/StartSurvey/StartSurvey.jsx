@@ -25,11 +25,12 @@ function StartSurvey() {
 
   const activeSurveyId = useSelector((store) => store.activeSurveyId);
   const user = useSelector((store) => store.user);
-
+//back button click handler
   const handleBackClick = () => {
     console.log('You clicked the back button!');
     history.push('/your-surveys');
   };
+  //handle start survey button
   const handleStartClick = () => {
     console.log(
       'You clicked the Start Survey for the respondent. Here is the survey_id',
@@ -38,7 +39,7 @@ function StartSurvey() {
     history.push(`/respondent-survey/${activeSurveyId}`);
   };
 
-  // this will set the qr code to bring others to the beginning of the rating pages for this specific wine
+  // this will set the qr code to bring others to the specified survey
   const setQR = () => {
     axios
       .get(`/api/response/get/${activeSurveyId}/qrCode`)
@@ -55,6 +56,7 @@ function StartSurvey() {
       <div className="container">
         <p>Start the Survey!</p>
       </div>
+      {/* back button */}
       <Box
         sx={{
           // '& > :not(style)': { m: 1, width: 'auto', height: '79px' },
